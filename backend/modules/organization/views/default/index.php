@@ -31,6 +31,14 @@ $this->params['breadcrumbs'][] = $this->title;
             'name',
             'phone',
             [
+                'attribute' => 'city',
+                'value' => function ($model) {
+                    return $model->cityObj->name;
+                },
+                'filter' => \yii\helpers\ArrayHelper::map(\common\modules\organization\models\City::find()->all(), 'id', 'name')
+
+            ],
+            [
                 'attribute' => 'category',
                 'value' => function ($model) {
                     return $model->cat->name;

@@ -29,7 +29,7 @@ use Yii;
  * @property string $seo_keywords
  * @property string $seo_description
  * @property string $working_time
- *@property string $city
+ * @property string $city
  *
  */
 
@@ -49,9 +49,11 @@ class Organization extends ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'address', 'phone', 'description', 'latitude', 'longitude', 'category'], 'required'],
+            [['name', 'phone', 'description', 'category', 'address'], 'required'],
+            [['latitude'], 'required', 'message' => 'Укажите рассположение организации на карте'],
+            [['latitude', 'longitude'], 'double'],
             [['phone'], 'string', 'max' => 256],
-            [['longitude', 'latitude', 'city'], 'integer'],
+            [['city', 'category'], 'integer'],
             [['seo_description'], 'string'],
             [['seo_title', 'seo_keywords'], 'string', 'max' => 512]
         ];
@@ -64,6 +66,7 @@ class Organization extends ActiveRecord
     {
         return [
             'id' => 'ID',
+            'city' => 'Город',
             'name' => 'Название организации',
             'created_at' => 'Дата создания',
             'updated_at' => 'Дата обновления',
@@ -77,7 +80,6 @@ class Organization extends ActiveRecord
             'seo_keywords' => 'SEO Ключевые слова',
             'seo_description' => 'SEO Описание',
             'working_time' => 'Время работы',
-            'city' => 'Город'
         ];
     }
 
@@ -107,7 +109,7 @@ class Organization extends ActiveRecord
         return $this->hasOne(Category::className(), ['id' => 'category']);
     }
 
-    public function getCity()
+    public function getCityObj()
     {
         return $this->hasOne(City::className(), ['id' => 'city']);
     }

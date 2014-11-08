@@ -20,6 +20,7 @@ $this->params['breadcrumbs'][] = ['label' => 'Обновить'];
     <h1><?= Html::encode($this->title) ?> </h1>
 
     <?= $this->render('_form', [
-    'model' => $model
-]) ?>
+        'model' => $model,
+        'city' => $city
+    ]) ?>
 </div>

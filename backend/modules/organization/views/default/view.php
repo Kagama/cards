@@ -38,6 +38,10 @@ $this->params['breadcrumbs'][] = $this->title; ?>
                     'label' => 'Категория',
                     'value' => $model->cat->name,
                 ],
+                'city'=> [
+                    'label' => 'Город',
+                    'value' => $model->cityObj->name,
+                ],
                 'working_time',
                 'phone',
                 'address',

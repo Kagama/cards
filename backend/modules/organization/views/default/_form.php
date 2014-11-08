@@ -61,7 +61,7 @@ Yii::$app->view->registerJs("
                         coordinates[1]
                     );
                 });
-                $('#YMapsID').hover(function(){
+                $('#yandexMap').hover(function(){
                     myMap.behaviors.enable('scrollZoom')
                 },function(){
                     myMap.behaviors.disable('scrollZoom');
@@ -109,7 +109,7 @@ Yii::$app->view->registerJs("
                 'data-validate' => "parsley"
             ]
         ]); ?>
-
+        <?= $form->errorSummary($model)?>
         <?= $form->field($model, 'name')->textInput(); ?>
 
         <?= $form->field($model, 'category')->dropDownList(ArrayHelper::map(Category::find()->all(), 'id', 'name'), ['prompt' => '---']) ?>
@@ -135,6 +135,7 @@ Yii::$app->view->registerJs("
         <?= $form->field($model, 'address')->textInput(['maxlength' => 512]); ?>
 
         <span class="test"></span>
+
 
         <div class="row">
             <a href="#" onclick="$('#yandexMap').toggle(); return false;" class="btn"><span

@@ -74,14 +74,14 @@ class DefaultController extends Controller
         $city = new City;
         if ($model->load(\Yii::$app->request->post()) && $city->load(\Yii::$app->request->post()))
             if ($model->validate() && $city->validate()) {
-                var_dump($city->findByName($city->name));
+                $model->city = $city->findByName($city->name);
 
-//                if ($model->save()) {
-//                    return $this->redirect(['view', 'id' => $model->id]);
-//                }
+                if ($model->save()) {
+                    return $this->redirect(['view', 'id' => $model->id]);
+                }
             }
-//            elseif ($model->latitude == '' || $model->longitude == '')
-//              \Yii::$app->getSession()->setFlash('error', '<p class="alert-danger">Укажите расположение организации на карте</p>');
+            elseif ($model->latitude == '' || $model->longitude == '')
+              \Yii::$app->getSession()->setFlash('error', '<p class="alert-danger">Укажите расположение организации на карте</p>');
             return $this->render('create', [
                 'model' => $model,
                 'city' => $city,
@@ -96,14 +96,20 @@ class DefaultController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        $city = City::findOne($model->city);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
-        } else {
+        if ($model->load(Yii::$app->request->post()) && $city->load(\Yii::$app->request->post()))
+            if ($model->validate() && $city->validate()) {
+                $model->city = $city->findByName($city->name);
+                if ($model->save()) {
+                    return $this->redirect(['view', 'id' => $model->id]);
+                }
+            }
+
             return $this->render('update', [
                 'model' => $model,
+                'city' => $city,
             ]);
-        }
     }
 
     /**

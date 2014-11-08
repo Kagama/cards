@@ -41,7 +41,7 @@ class OrgSearch extends Organization
         $query->andFilterWhere([
             'id' => $this->id,
             'address' => $this->address,
-            'category' => $this->category,
+//            'category' => $this->category,
             'phone' => $this->phone,
             'city' => $this->city,
         ]);
