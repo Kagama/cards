@@ -2,7 +2,6 @@
 
 namespace common\modules\user\models;
 
-//use common\modules\camp\models\Camp;
 use Yii;
 use yii\base\NotSupportedException;
 use yii\db\ActiveRecord;
@@ -20,14 +19,14 @@ use common\modules\organization\models\City;
  * @property string $password_hash
  * @property string $password_reset_token
  * @property string $email
-// * @property string $phone
+ * @property string $phone
  * @property integer $role
  * @property integer $status
  * @property string $car_number
  * @property integer $created_at
  * @property integer $updated_at
- * @property integer $approve_newsletter
  * @property integer $bank_card
+ * @property integer $city
  */
 class User extends ActiveRecord implements IdentityInterface
 {

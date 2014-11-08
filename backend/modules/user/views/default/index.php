@@ -36,8 +36,11 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'attribute' => 'city',
                 'value' => function ($model) {
+                    var_dump($model->city->name);
                     return $model->city->name;
                 },
+                'filter' => \yii\helpers\ArrayHelper::map(\common\modules\organization\models\City::find()->all(), 'id', 'name')
+
             ],
             'phone',
             ['class' => 'yii\grid\ActionColumn'],

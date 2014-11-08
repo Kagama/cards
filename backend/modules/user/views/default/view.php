@@ -39,6 +39,10 @@ $this->params['breadcrumbs'][] = $this->title; ?>
                 'phone',
                 'discount_card',
                 'car_number',
+                'city' => [
+                    'label' => 'Город',
+                    'value' => $model->city->name,
+                ],
                 'created_at' => [
                     'label' => 'Дата создания',
                     'value' => date('d.m.Y, H:i',$model->created_at),
@@ -47,14 +51,9 @@ $this->params['breadcrumbs'][] = $this->title; ?>
                     'label' => 'Дата обновления',
                     'value' => date('d.m.Y, H:i',$model->updated_at),
                 ],
-                [
-                    'attribute' => 'city',
-                    'value' => function ($model) {
-                        return $model->city;
-                    },
-                ],
+
             ]
         ]) ?>
-        
+
     </p>
 </div>

@@ -9,7 +9,7 @@
 namespace backend\modules\organization\controllers;
 
 use common\modules\organization\models\Category;
-use backend\modules\organization\models\CatSearch;
+use common\modules\organization\models\CatSearch;
 use yii\web\NotFoundHttpException;
 use yii\web\Controller;
 use yii\filters\VerbFilter;

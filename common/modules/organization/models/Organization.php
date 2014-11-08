@@ -51,7 +51,7 @@ class Organization extends ActiveRecord
         return [
             [['name', 'address', 'phone', 'description', 'latitude', 'longitude', 'category'], 'required'],
             [['phone'], 'string', 'max' => 256],
-            [['longitude', 'latitude', 'city'], 'integer'],
+            [['longitude', 'latitude', 'city', 'category'], 'integer'],
             [['seo_description'], 'string'],
             [['seo_title', 'seo_keywords'], 'string', 'max' => 512]
         ];
@@ -107,7 +107,7 @@ class Organization extends ActiveRecord
         return $this->hasOne(Category::className(), ['id' => 'category']);
     }
 
-    public function getCity()
+    public function getCityObj()
     {
         return $this->hasOne(City::className(), ['id' => 'city']);
     }
