@@ -1,6 +1,14 @@
 # yii console command
 /yii
 
+requirements.*
+init.bat
+init
+yii
+yii.bat
+
+
+
 # phpstorm project files
 .idea
 
@@ -18,6 +26,20 @@ Thumbs.db
 # composer vendor dir
 /vendor
 
+# web assest
+/frontend/web/assest
+/backend/web/assest
+
+# runtime dirs
+/backend/runtime
+/frontend/runtime
+
+# image files cache
+/images
+/files
+/cache
+/uploads
+
 # composer itself is not needed
 composer.phar
 
@@ -28,3 +50,5 @@ composer.phar
 phpunit.phar
 # local phpunit config
 /phpunit.xml
+
+

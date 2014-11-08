@@ -13,6 +13,7 @@
 
     RewriteRule ^cache/(.*)$ - [L] # открытваем доступ в cache как public
     RewriteRule ^images/(.*)$ - [L] # открытваем доступ в images как public
+    RewriteRule ^uploads/(.*)$ - [L] # открытваем доступ в images как public
 
     # Перенаправляем administrator на входной скрипт админки
     RewriteRule ^cp/(.*)?$ backend/web/$1 [L,PT]

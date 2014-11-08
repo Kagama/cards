@@ -36,7 +36,6 @@ $this->params['breadcrumbs'][] = $this->title;
                     return $model->cityObj->name;
                 },
                 'filter' => \yii\helpers\ArrayHelper::map(\common\modules\organization\models\City::find()->all(), 'id', 'name')
-
             ],
             [
                 'attribute' => 'category',

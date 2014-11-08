@@ -80,13 +80,12 @@ class DefaultController extends Controller
                     return $this->redirect(['view', 'id' => $model->id]);
                 }
             }
-            elseif ($model->latitude == '' || $model->longitude == '')
-              \Yii::$app->getSession()->setFlash('error', '<p class="alert-danger">Укажите расположение организации на карте</p>');
-            return $this->render('create', [
-                'model' => $model,
-                'city' => $city,
-            ]);
+        return $this->render('create', [
+            'model' => $model,
+            'city' => $city,
+        ]);
     }
+
     /**
      * Updates an existing Organization model.
      * If update is successful, the browser will be redirected to the 'view' page.
@@ -97,7 +96,8 @@ class DefaultController extends Controller
     {
         $model = $this->findModel($id);
         $city = City::findOne($model->city);
-
+        if (!$city)
+            $city = new City();
         if ($model->load(Yii::$app->request->post()) && $city->load(\Yii::$app->request->post()))
             if ($model->validate() && $city->validate()) {
                 $model->city = $city->findByName($city->name);
@@ -106,10 +106,10 @@ class DefaultController extends Controller
                 }
             }
 
-            return $this->render('update', [
-                'model' => $model,
-                'city' => $city,
-            ]);
+        return $this->render('update', [
+            'model' => $model,
+            'city' => $city,
+        ]);
     }
 
     /**
