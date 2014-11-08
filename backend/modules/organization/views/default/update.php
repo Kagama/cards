@@ -11,7 +11,7 @@ use yii\helpers\Html;
 
 $this->registerAssetBundle('backend\assets\PostModuleAsset', \yii\web\View::POS_HEAD);
 
-$this->title = 'Обновить организацию: '.$model->name;
+$this->title = 'Обновить организацию: ' . $model->name;
 $this->params['breadcrumbs'][] = ['label' => 'Организации', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->name, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = ['label' => 'Обновить'];
@@ -20,6 +20,7 @@ $this->params['breadcrumbs'][] = ['label' => 'Обновить'];
     <h1><?= Html::encode($this->title) ?> </h1>
 
     <?= $this->render('_form', [
-    'model' => $model
-]) ?>
+        'model' => $model,
+        'city' => $city
+    ]) ?>
 </div>
