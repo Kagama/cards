@@ -1,0 +1,128 @@
+.site-login {
+    position: relative;
+    width: 600px;
+    margin: 40px auto;
+}
+.login-page .logo h4  a {
+    font-size: 27px;
+}
+.login-page .logo h4  a strong {
+    /*font-size: 1em;*/
+}
+.pages-index, .pages-create, .pages-view, .pages-update, .padding020 {
+    margin: 0 20px 0 20px;
+}
+.has-error {
+
+}
+.has-error .form-control {
+    border-color: #e70000;
+    -webkit-box-shadow: inset 0 1px 1px rgba(231, 0, 0, 0.07);
+    box-shadow: inset 0 1px 1px rgba(231, 0, 0, 0.07);
+}
+
+.has-error .help-block, .has-error .radio, .has-error .checkbox, .has-error .radio-inline, .has-error .checkbox-inline {
+    color: #fff;
+    background-color: rgba(255, 0, 0, 0.70);
+    padding: 0 10px 0 10px;
+    margin-top: 0;
+    /*display: inline-block;*/
+    /*zoom: 1;*/
+    /**display: inline;*/
+}
+.notifications {
+    display: none;
+}
+.panel-collapse li {
+    border-bottom: 1px solid rgba(240, 240, 240, 0.24);
+}
+.manufacture-form .template-upload .start {
+    display: none;
+}
+
+.show-img {
+    padding: 10px;
+    position: relative;
+}
+.show-img .photo-item {
+    position: relative;
+    display: inline-block;
+    zoom: 1;
+    *display: inline;
+
+}
+.show-img .photo-item img {
+    padding-right: 10px;
+}
+.show-img .photo-item a {
+
+}
+.category-checkbox {
+
+}
+.category-checkbox li ul {
+    padding-left: 20px;
+}
+select {
+    color: #000;
+}
+
+.photos-list li a {
+    color: #fff;
+    font-size: 14px;
+}
+.photos-list {
+    list-style: none;
+
+}
+.photos-list li span.name {
+    display: block;
+}
+.photos-list li {
+    display: inline-block;
+    zoom:1;
+    *display: inline;
+    width: 200px;
+    height: auto;
+    vertical-align: top;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+.photos-list li .ajaxChangePosition {
+    width: 30px;
+    text-align: center;
+}
+.photos-list li .success {
+    border: 1px solid #007400;
+    background-color: #c9ffb2;
+}
+.photos-list li .error {
+    border: 1px solid #c60000;
+    background-color: #ffd2c7;
+}
+/*.table {*/
+    /*width: 100%;*/
+/*}*/
+/*.table tr th {*/
+    /*font-weight: lighter;*/
+    /*border-bottom: ;*/
+/*}*/
+
+.map-content {
+    position: relative;
+    width: 426px; height: 590px;
+    z-index: 80;
+}
+.map-camp-item {
+    position: absolute;
+    width: 13px;
+    height: 13px;
+    background: url("/cp/img/map-camp-item.png");
+    margin-left: -6px;
+    margin-top: -6px;
+    z-index: 90;
+}
+.redactor_box p {
+    color: #535353;
+}
