@@ -16,8 +16,14 @@ use yii\widgets\ActiveForm;
 
         <?= $form->field($model, 'title')->textInput(['maxlength' => 512]) ?>
 
-        <div style="color:#000">
-            <?= $form->field($model, 'small_text')->widget(sim2github\imperavi\widgets\Redactor::className(), [
+
+            <?= $form->field($model, 'small_text', [
+            'template' => '
+                {label}
+                <div style="color:#000">{input}</div>
+                {error}
+            '
+        ])->widget(sim2github\imperavi\widgets\Redactor::className(), [
 //            'options' => [
 //                'debug' => 'true',
 //            ],
@@ -39,9 +45,14 @@ use yii\widgets\ActiveForm;
 
             ])
             ?>
-        </div>
-        <div style="color:#000">
-            <?= $form->field($model, 'text')->widget(sim2github\imperavi\widgets\Redactor::className(), [
+
+            <?= $form->field($model, 'text', [
+            'template' => '
+                {label}
+                <div style="color:#000">{input}</div>
+                {error}
+            '
+        ])->widget(sim2github\imperavi\widgets\Redactor::className(), [
                 'options' => [
                     'debug' => 'false',
                 ],
@@ -71,28 +82,7 @@ use yii\widgets\ActiveForm;
 
             ])
             ?>
-        </div>
-        <?//= $form->field($model, 'text')->widget(sim2github\imperavi\widgets\Redactor::className(), [
-        //             'options' => [
-        //                 'debug' => 'true',
-        //             ],
-        //             'clientOptions' => [ // [More about settings](http://imperavi.com/redactor/docs/settings/)
-        //                 'convertImageLinks' => 'true', //By default
-        //                 'convertVideoLinks' => 'true', //By default
-        //                 //'wym' => 'true',
-        //                 //'air' => 'true',
-        //                 'linkEmail' => 'true', //By default
-        //                 'lang' => 'ru',
-        // //            'imageGetJson' =>  \Yii::getAlias('@web').'/redactor/upload/imagejson', //By default
-        //                 'plugins' => [ // [More about plugins](http://imperavi.com/redactor/plugins/)
-        //                     'ace',
-        //                     'clips',
-        //                     'fullscreen'
-        //                 ]
-        //             ],
-
-        //         ])
-        ?>
+       
         <fieldset>
             <legend>SEO Атрибуты</legend>
             <?= $form->field($model, 'seo_title')->textInput(['maxlength' => 512]) ?>
