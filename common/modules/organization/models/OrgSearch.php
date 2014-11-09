@@ -13,7 +13,7 @@ class OrgSearch extends Organization
     public function rules()
     {
         return [
-            [['id'], 'integer'],
+            [['id', 'city'], 'integer'],
             [['description', 'address', 'category', 'phone'], 'string'],
             [['latitude', 'longitude'], 'double'],
             [['name'], 'safe'],
