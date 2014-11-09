@@ -39,23 +39,6 @@ $route = Yii::$app->controller->getUniqueId();
             <!--                <li><a href="stat_realtime.html">Realtime</a></li>-->
             <!--            </ul>-->
         </li>
-        <li class="<?= ($route == 'user/default' || $route == 'mailing/default') ? "active" : "panel"; ?>">
-            <a class="accordion-toggle collapsed" data-toggle="collapse"
-               data-parent="#side-nav" href="#special-collapse-user"><i class="fa fa-users"></i> <span
-                    class="name">Управление пользователями</span></a>
-            <ul id="special-collapse-user" class="panel-collapse collapse">
-                <li><a href="<?= Url::toRoute('/user/default/index') ?>"><i class="fa fa-user"></i> <span class="name">Пользователи</span></a>
-                </li>
-
-                <!--                <li><a href="special_invoice.html">Invoice</a></li>-->
-                <!--                <li><a href="special_inbox.html">Inbox <span class="label label-important">3</span></a></li>-->
-                <!--                <li><a href="login.html">Login</a></li>-->
-                <!--                <li><a href="special_404.html">404</a></li>-->
-                <!--                <li><a href="landing.html" data-no-pjax>Landing</a></li>-->
-                <!--                <li><a href="white/index.html" data-no-pjax>White <i class="fa fa-external-link-square"></i></a></li>-->
-            </ul>
-        </li>
-
         <li class="<?= ($route == 'organization/default' || $route == 'organization/category') ? "active" : "panel"; ?>">
             <a class="accordion-toggle collapsed" data-toggle="collapse"
                data-parent="#side-nav" href="#special-collapse-organization"><i class="fa fa-bars"></i> <span
@@ -73,6 +56,24 @@ $route = Yii::$app->controller->getUniqueId();
                 <!--                <li><a href="white/index.html" data-no-pjax>White <i class="fa fa-external-link-square"></i></a></li>-->
             </ul>
         </li>
+        <li class="<?= ($route == 'user/default' || $route == 'mailing/default') ? "active" : "panel"; ?>">
+            <a class="accordion-toggle collapsed" data-toggle="collapse"
+               data-parent="#side-nav" href="#special-collapse-user"><i class="fa fa-users"></i> <span
+                    class="name">Управление пользователями</span></a>
+            <ul id="special-collapse-user" class="panel-collapse collapse">
+                <li><a href="<?= Url::toRoute('/user/default/index') ?>"><i class="fa fa-user"></i> <span class="name">Пользователи</span></a>
+                </li>
+
+                <!--                <li><a href="special_invoice.html">Invoice</a></li>-->
+                <!--                <li><a href="special_inbox.html">Inbox <span class="label label-important">3</span></a></li>-->
+                <!--                <li><a href="login.html">Login</a></li>-->
+                <!--                <li><a href="special_404.html">404</a></li>-->
+                <!--                <li><a href="landing.html" data-no-pjax>Landing</a></li>-->
+                <!--                <li><a href="white/index.html" data-no-pjax>White <i class="fa fa-external-link-square"></i></a></li>-->
+            </ul>
+        </li>
+
+
         <!--        <li class="panel">-->
         <!--            <a class="accordion-toggle collapsed" data-toggle="collapse"-->
         <!--               data-parent="#side-nav" href="index.html#menu-levels-collapse"><i class="fa fa-code-fork"></i> <span-->
