@@ -24,7 +24,13 @@ use common\modules\organization\models\Category;
 
         <?= $form->field($model, 'name')->textInput(); ?>
 
-        <?= $form->field($model, 'text_before')->widget(sim2github\imperavi\widgets\Redactor::className(), [
+        <?= $form->field($model, 'text_before', [
+            'template' => '
+                {label}
+                <div style="color:#000">{input}</div>
+                {error}
+            '
+        ])->widget(sim2github\imperavi\widgets\Redactor::className(), [
             'options' => [
                 'debug' => 'true',
             ],
@@ -47,7 +53,13 @@ use common\modules\organization\models\Category;
         ])
         ?>
 
-        <?= $form->field($model, 'text_after')->widget(sim2github\imperavi\widgets\Redactor::className(), [
+        <?= $form->field($model, 'text_after',[
+            'template' => '
+                {label}
+                <div style="color:#000">{input}</div>
+                {error}
+            '
+        ])->widget(sim2github\imperavi\widgets\Redactor::className(), [
             'options' => [
                 'debug' => 'true',
             ],
