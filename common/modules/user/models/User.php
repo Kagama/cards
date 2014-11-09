@@ -27,6 +27,7 @@ use common\modules\organization\models\City;
  * @property integer $updated_at
  * @property integer $bank_card
  * @property integer $city
+ * @property integer $discount_card
  */
 class User extends ActiveRecord implements IdentityInterface
 {
@@ -255,5 +256,16 @@ class User extends ActiveRecord implements IdentityInterface
             return true;
         else
             return false;
+    }
+
+
+    public static function getAllLikeJsList () {
+        $temp_js_list = "";
+        $tags = User::find()->where(['discount_card' => 0 ])->orderBy('name ASC')->all();
+        foreach ($tags as $tag) {
+            $temp_js_list .= (empty($temp_js_list) ? "" : ", ")." ".$tag->id." - ".$tag->username;
+        }
+        $temp_js_list = explode(",", $temp_js_list);
+        return $temp_js_list;
     }
 }

@@ -39,6 +39,13 @@ $route = Yii::$app->controller->getUniqueId();
             <!--                <li><a href="stat_realtime.html">Realtime</a></li>-->
             <!--            </ul>-->
         </li>
+
+        <li class="<?= ($route == 'card/default') ? "active" : "panel"; ?>">
+            <a class="accordion-toggle collapsed"
+               href="<?= Url::toRoute('/card/default/index') ?>"><i class="fa"></i> <span
+                    class="name">Карты</span></a>
+        </li>
+
         <li class="<?= ($route == 'organization/default' || $route == 'organization/category') ? "active" : "panel"; ?>">
             <a class="accordion-toggle collapsed" data-toggle="collapse"
                data-parent="#side-nav" href="#special-collapse-organization"><i class="fa fa-bars"></i> <span
