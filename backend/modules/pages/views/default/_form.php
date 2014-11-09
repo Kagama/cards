@@ -82,7 +82,7 @@ use yii\widgets\ActiveForm;
 
             ])
             ?>
-       
+
         <fieldset>
             <legend>SEO Атрибуты</legend>
             <?= $form->field($model, 'seo_title')->textInput(['maxlength' => 512]) ?>

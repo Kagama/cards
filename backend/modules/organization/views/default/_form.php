@@ -9,7 +9,7 @@ use yii\helpers\Html;
 use yii\web\View;
 use yii\widgets\ActiveForm;
 use yii\helpers\ArrayHelper;
-use kartik\widgets\Typeahead;
+//use kartik\widgets\Typeahead;
 use common\modules\organization\models\Category;
 use common\modules\organization\models\City;
 
@@ -109,7 +109,7 @@ Yii::$app->view->registerJs("
                 'data-validate' => "parsley"
             ]
         ]); ?>
-        <?= $form->errorSummary($model)?>
+        <?= $form->errorSummary($model) ?>
         <?= $form->field($model, 'name')->textInput(); ?>
 
         <?= $form->field($model, 'category')->dropDownList(ArrayHelper::map(Category::find()->all(), 'id', 'name'), ['prompt' => '---']) ?>
@@ -173,7 +173,7 @@ Yii::$app->view->registerJs("
         </fieldset>
 
         <div class="form-actions">
-            <?= Html::submitButton($model->isNewRecord ? 'Создать' : 'Сохранить', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary'])?>
+            <?= Html::submitButton($model->isNewRecord ? 'Создать' : 'Сохранить', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
         </div>
 
         <?php ActiveForm::end(); ?>

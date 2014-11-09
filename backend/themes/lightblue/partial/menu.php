@@ -56,14 +56,14 @@ $route = Yii::$app->controller->getUniqueId();
             </ul>
         </li>
 
-        <li class="<?= ($route == 'organization/default') ? "active" : "panel"; ?>">
+        <li class="<?= ($route == 'organization/default' || $route == 'organization/category') ? "active" : "panel"; ?>">
             <a class="accordion-toggle collapsed" data-toggle="collapse"
-               data-parent="#side-nav" href="#special-collapse-organization"><i class="fa fa-organizations"></i> <span
+               data-parent="#side-nav" href="#special-collapse-organization"><i class="fa fa-bars"></i> <span
                     class="name">Управление организациями</span></a>
             <ul id="special-collapse-organization" class="panel-collapse collapse">
-                <li><a href="<?= Url::toRoute('/organization/default/index') ?>"><i class="fa fa-organization"></i> <span class="name">Организации</span></a>
+                <li><a href="<?= Url::toRoute('/organization/default/index') ?>"><span class="name">Организации</span></a>
                 </li>
-                <li><a href="<?= Url::toRoute('/organization/category/index') ?>"><i class="fa fa-organization"></i> <span class="name">Категории</span></a>
+                <li><a href="<?= Url::toRoute('/organization/category/index') ?>"><span class="name">Категории</span></a>
                 </li>
                 <!--                <li><a href="special_invoice.html">Invoice</a></li>-->
                 <!--                <li><a href="special_inbox.html">Inbox <span class="label label-important">3</span></a></li>-->
