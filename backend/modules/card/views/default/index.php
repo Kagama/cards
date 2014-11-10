@@ -19,6 +19,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <p>
         <?= Html::a('Добавить карту', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Добавить несколько карт', ['create-many'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?= GridView::widget([

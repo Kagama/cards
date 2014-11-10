@@ -18,6 +18,8 @@ use yii\db\ActiveRecord;
  */
 class Card extends ActiveRecord
 {
+    public $from;
+    public $to;
     /**
      * @inheritdoc
      */
@@ -52,6 +54,17 @@ class Card extends ActiveRecord
             'user_id' => 'ID пользователя',
             'active' => 'Используется'
         ];
+    }
+
+    public function createCards($from, $to)
+    {
+        for ($i = $from; $i <= $to; $i++){
+            if (!(Card::findOne(['discount_card' => $i]))) {
+                $card = new Card();
+                $card->discount_card = $i;
+                $card->save();
+            }
+        }
     }
 
     /**

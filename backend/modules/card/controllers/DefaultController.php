@@ -31,11 +31,11 @@ class DefaultController extends Controller
             ],
             'access' => [
                 'class' => AccessControl::className(),
-                'only' => ['index', 'view', 'create', 'update', 'delete'],
+                'only' => ['index', 'view', 'create', 'create_many', 'update', 'delete'],
                 'rules' => [
                     [
                         'allow' => true,
-                        'actions' => ['index', 'view', 'create', 'update', 'delete'],
+                        'actions' => ['index', 'view', 'create', 'create_many', 'update', 'delete'],
 //                        'roles' => ['@']
                         'matchCallback' => function ($rule, $action) {
                             $model = AdminUsers::findIdentity(Yii::$app->user->getId());
@@ -81,6 +81,26 @@ class DefaultController extends Controller
                 }
             }
         return $this->render('create', [
+            'model' => $model,
+        ]);
+    }
+
+    public function actionCreateMany()
+    {
+        $model = new Card();
+        if (Yii::$app->request->post($model->from) || Yii::$app->request->post($model->to))
+        {
+            $cards = Yii::$app->request->post($model->from);
+            $from = $cards['Card']['from'];
+            $to = $cards['Card']['to'];
+            if ($from < $to)
+            {
+                $model->createCards($from, $to);
+                return $this->redirect(['index']);
+            } else
+                Yii::$app->getSession()->setFlash('error', 'Введите правильные значения.');
+        }
+        return $this->render('create-many', [
             'model' => $model,
         ]);
     }
