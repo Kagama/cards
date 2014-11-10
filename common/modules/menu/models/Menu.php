@@ -82,7 +82,6 @@ class Menu extends \yii\db\ActiveRecord
             } else {
                 $this->level = 0;
             }
-//            $path = ($path != "" ? $path . '/' : "");
             /**
              * Если модуль равен -1 значит это главная страница
              * Путь к главной странице равен "" смотрите конфиг файл urlManager->rules
