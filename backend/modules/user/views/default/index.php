@@ -28,20 +28,44 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
             'id',
-            'username',
-            'surname',
-            'name',
-            'discount_card',
-            'car_number',
+            [
+                'attribute' => 'username',
+                'value' => function ($model) {
+                    return $model->username == null ? "-" : $model->username;
+                }
+            ],
+            [
+                'attribute' => 'surname',
+                'value' => function ($model) {
+                    return $model->surname == null ? "-" : $model->surname;
+                }
+            ],
+            [
+                'attribute' => 'name',
+                'value' => function ($model) {
+                    return $model->name == null ? "-" : $model->name;
+                }
+            ],
+            [
+                'attribute' => 'discount_card',
+                'value' => function ($model) {
+                    return $model->discount_card == null ? "-" : $model->discount_card;
+                }
+            ],
+            [
+                'attribute' => 'car_number',
+                'value' => function ($model) {
+                    return $model->car_number == null ? "-" : $model->car_number;
+                }
+            ],
             [
                 'attribute' => 'city',
                 'value' => function ($model) {
-                    return $model->cityObj->name;
+                    return $model->city == null ? "-" : $model->city;
                 },
                 'filter' => \yii\helpers\ArrayHelper::map(\common\modules\organization\models\City::find()->all(), 'id', 'name')
 
             ],
-            'phone',
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]);

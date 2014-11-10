@@ -31,6 +31,8 @@ use common\modules\user\models\User;
 
         <?=
         $form->field($model, 'user_id')->widget(\kartik\widgets\Select2::className(), [
+            'model' => $model,
+            'attribute' => 'user_id',
             'data' => ArrayHelper::map(User::findAll(['discount_card' => 0]), 'id', 'username'),
             'options' => ['placeholder' => 'Выберите пользователя ...'],
             'pluginOptions' => [

@@ -37,7 +37,10 @@ $this->params['breadcrumbs'][] = $this->title; ?>
                 'surname',
                 'name',
                 'phone',
-                'discount_card',
+                'discount_card' =>[
+                    'label' => 'Номер скидочной карты',
+                    'value' => $model->discount_card == 0 ? "-" : $model->discount_card,
+                ],
                 'car_number',
                 'city' => [
                     'label' => 'Город',

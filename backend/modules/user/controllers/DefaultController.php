@@ -7,6 +7,7 @@
  */
 namespace backend\modules\user\controllers;
 
+use common\modules\card\models\Card;
 use common\modules\user\models\User;
 use common\modules\user\models\UserSearch;
 use yii\web\NotFoundHttpException;
@@ -81,13 +82,32 @@ class DefaultController extends Controller
     {
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
-        } else {
-            return $this->render('update', [
-                'model' => $model,
-            ]);
+        $discount_card = $model->discount_card;
+        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+            if ($model->discount_card) {
+                $card = Card::findOne([$model->discount_card]);
+                $model->discount_card = $card->discount_card;
+                if ($model->discount_card != $discount_card) {
+                    $card->active = true;
+                    $card->registration_date = time();
+                    $card->user_id = $model->id;
+                    $card->save();
+                }
+            } elseif ($discount_card) {
+                $card = Card::findOne(['discount_card' => $discount_card]);
+                $card->active = false;
+                $card->registration_date = null;
+                $card->user_id = null;
+                $card->save();
+            }
+            if ($model->save()) {
+                return $this->redirect(['view', 'id' => $model->id]);
+            }
         }
+
+        return $this->render('update', [
+            'model' => $model,
+        ]);
     }
 
     /**
@@ -107,7 +127,7 @@ class DefaultController extends Controller
      * Finds the News model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Organization the loaded model
+     * @return User the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
