@@ -41,6 +41,10 @@ return [
 
         'user' => [
             'class' => 'backend\modules\user\UserModule',
+        ],
+
+        'card' => [
+            'class' => 'backend\modules\card\CardModule',
         ]
     ],
     'components' => [
