@@ -75,6 +75,9 @@ class DefaultController extends Controller
                 if ($model->user_id) {
                     $model->active = true;
                     $model->registration_date = time();
+                    $user = User::findOne($model->user_id);
+                    $user->discount_card = $model->id;
+                    $user->save();
                 }
                 if ($model->save()) {
                     return $this->redirect(['view', 'id' => $model->id]);
@@ -116,24 +119,7 @@ class DefaultController extends Controller
         $model = $this->findModel($id);
         $user_id = $model->user_id;
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
-            if ($model->user_id) {
-                if ($model->user_id != $user_id) {
-                    $model->active = true;
-                    $model->registration_date = time();
-                    $user = User::findOne($model->user_id);
-                    $user->discount_card = $model->discount_card;
-                    $user->save(); //???
-                }
-            } else {
-                $model->active = false;
-                $model->registration_date = null;
-                if ($user_id) {
-
-                    $user = User::findOne($user_id);
-                    $user->discount_card = 0;
-                    $user->save(); //???
-                }
-            }
+            Card::changeDiscountCard($user_id, $model);
 
             if ($model->save()) {
                 return $this->redirect(['view', 'id' => $model->id]);
@@ -154,11 +140,12 @@ class DefaultController extends Controller
     public function actionDelete($id)
     {
         $model = Card::findOne($id);
-        if ($model->user_id)
-        {
-            $user = User::findOne($model->user_id);
-            $user->discount_card = 0;
-        }
+        $model->changeDiscountCard($model->user_id);
+//        if ($model->user_id)
+//        {
+//            $user = User::findOne($model->user_id);
+//            $user->discount_card = null;
+//        }
 
         $model->delete();
 

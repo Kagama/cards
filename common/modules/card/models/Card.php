@@ -4,6 +4,7 @@ namespace common\modules\card\models;
 
 use Yii;
 use yii\db\ActiveRecord;
+use common\modules\user\models\User;
 
 /**
  * This is the model class for table "t_kg_card".
@@ -82,4 +83,39 @@ class Card extends ActiveRecord
 //            ],
 //        ];
 //    }
+
+    public static function changeDiscountCard($user_id, $model = 0)
+    {
+        // Проверяем, задан ли ID пользователя. Если да
+        if ($model->user_id) {
+            // Проверяем, был ли привязан к карте пользователь. Если да
+            if ($model->user_id != $user_id) {
+                // Устанавливаем параметры карты
+                $model->registration_date = time();
+                $model->active = true;
+
+                // Находим предыдущего пользователя, если он был, и обнуляем номер карты
+                if ($user_id) {
+                    $user = User::findOne($user_id);
+                    $user->discount_card = null;
+                    $user->save();
+                }
+
+                // Находим нового пользователя и присваиваем ID карты
+                $user = User::findOne($model->user_id);
+                $user->discount_card = $model->id;
+                $user->save();
+            }
+        }
+        // Если ID пользователя не задан
+        elseif ($user_id) {
+            if ($model) {
+                $model->active = false;
+                $model->registration_date = null;
+            }
+            $user = User::findOne($user_id);
+            $user->discount_card = null;
+            $user->save();
+        }
+    }
 }

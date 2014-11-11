@@ -33,7 +33,7 @@ use yii\helpers\ArrayHelper;
         $form->field($model, 'discount_card')->widget(\kartik\widgets\Select2::className(), [
             'model' => $model,
             'attribute' => 'discount_card',
-            'data' => ArrayHelper::map(\common\modules\card\models\Card::findAll(['user_id' => null]), 'id', 'discount_card'),
+            'data' => ArrayHelper::map(\common\modules\card\models\Card::find()->all(), 'id', 'discount_card'),
             'options' => ['placeholder' => 'Выберите карту ...'],
             'pluginOptions' => [
                 'allowClear' => true

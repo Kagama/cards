@@ -13,7 +13,7 @@ use yii\helpers\ArrayHelper;
 use common\modules\organization\models\Category;
 use common\modules\organization\models\City;
 
-Yii::$app->view->registerJsFile('http://api-maps.yandex.ru/2.0/?load=package.full&mode=debug&lang=ru-RU');
+Yii::$app->view->registerJsFile('http://api-maps.yandex.ru/2.1/?load=package.full&mode=debug&lang=ru-RU');
 Yii::$app->view->registerJs("
             var myMap;
             ymaps.ready(function () {
@@ -29,69 +29,65 @@ Yii::$app->view->registerJs("
                 myMap = new ymaps.Map('yandexMap', {
                         center: startGeoPoint,
                         zoom: 13,
-                        //type: 'yandex#satellite',
-                        //behaviors: ['default', 'scrollZoom']
                     }
                 );
-                myMap.controls.add('mapTools').add('zoomControl').add('typeSelector');
-                myMap.behaviors.disable('scrollZoom');
 
-                var searchControl = new ymaps.control.SearchControl({ provider: 'yandex#map', 'noPlacemark': true });
-                myMap.controls.add(searchControl, { left: '100px', top: '5px' });
+                var myPlacemark = new ymaps.Placemark(
+                    startGeoPoint,
+                    {hintContent: 'Передвиньте метку в нужное место на карте.'},
+                    {
+                        draggable: true,
+                    }
+                );
 
-                var execution_status1 = {
-                    'hideIconOnBalloonOpen': true,
-                    draggable: true
-                };
-
-                myPlacemark = new ymaps.Placemark(startGeoPoint,{hintContent: 'Передвиньте метку в нужное место на карте.'}, execution_status1);
                 myMap.geoObjects.add(myPlacemark);
 
-                myMap.events.add('click', function(event) {
-                    var coordinates = event.get('coordPosition');
-                    myPlacemark.geometry.setCoordinates(coordinates);
-                    setCoordinates(coordinates[0], coordinates[1]);
+
+                myMap.events.add('click', function(e) {
+                    var coords = e.get('coords');
+                    myPlacemark.geometry.setCoordinates(coords);
+//                    setCoordinates(coords[0], coords[1]);
 
                     event.stopImmediatePropagation();
                 });
-                myPlacemark.events.add('dragend', function(e){
-                    var coordinates = e.get('target').geometry.getCoordinates();
-                    setCoordinates(
-                        coordinates[0],
-                        coordinates[1]
-                    );
+
+                myPlacemark.events.add('dragend', function(e) {
+                    var thisPlacemark = e.get('target');
+                    var coords = thisPlacemark.geometry.getCoordinates();
+//                    setCoordinates(coords[0], coords[1]);
                 });
+
                 $('#yandexMap').hover(function(){
                     myMap.behaviors.enable('scrollZoom')
                 },function(){
                     myMap.behaviors.disable('scrollZoom');
                 });
-
-//                $('input.ymaps-b-form-input__input').focus(function(){
-//                    alert($(this).attr('class'));
-//                });
-
-            });
-
-            function setCoordinates(latitude, longitude) {
-                    $('#organization-latitude').val(latitude);
-                    $('#organization-longitude').val(longitude);
-
-                    var myGeocoder = ymaps.geocode([latitude, longitude]);
-                    myGeocoder.then(function (result) {
-                        result.geoObjects.each(function (currentObject) {
-                                $('#organization-address').val(currentObject.properties.get('text'));
-                            return false;
-                        });
-                    });
-
-                }
-            $('#organization-address').on('keyup', function(){
-                if ($(this).val() != '') {
-                    $('.address_enter_type').val('hand');
-                } else {
-                    $('.address_enter_type').val(0);
-                }
+//
+////                $('input.ymaps-b-form-input__input').focus(function(){
+////                    alert($(this).attr('class'));
+////                });
+//
+//            });
+//
+//            function setCoordinates(latitude, longitude) {
+//                    $('#organization-latitude').val(latitude);
+//                    $('#organization-longitude').val(longitude);
+//
+//                    var myGeocoder = ymaps.geocode([latitude, longitude]);
+//                    myGeocoder.then(function (result) {
+//                        result.geoObjects.each(function (currentObject) {
+//                                $('#organization-address').val(currentObject.properties.get('text'));
+//                            return false;
+//                        });
+//                    });
+//
+//                }
+//            $('#organization-address').on('keyup', function(){
+//                if ($(this).val() != '') {
+//                    $('.address_enter_type').val('hand');
+//                } else {
+//                    $('.address_enter_type').val(0);
+//                }
 
             });
         ", View::POS_READY, 'add-organization-action');

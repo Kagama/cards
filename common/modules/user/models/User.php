@@ -8,6 +8,7 @@ use yii\db\ActiveRecord;
 //use yii\helpers\Security;
 use yii\web\IdentityInterface;
 use common\modules\organization\models\City;
+use common\modules\card\models\Card;
 
 /**
  * This is the model class for table "t_kg_user".
@@ -267,5 +268,40 @@ class User extends ActiveRecord implements IdentityInterface
         }
         $temp_js_list = explode(",", $temp_js_list);
         return $temp_js_list;
+    }
+
+
+    public static function changeDiscountCard($discount_card, $model = 0){
+        // Если номер скидочной карты задан
+        if ($model->discount_card) {
+
+            // Если номер скидочной карты изменился
+            if ($model->discount_card != $discount_card) {
+
+                // Находим предыдущую карту, если она была задана, и обнуляем ее значения
+                if ($discount_card) {
+                    $card = Card::findOne($model->discount_card);
+                    $card->active = false;
+                    $card->registration_date = null;
+                    $card->user_id = null;
+                    $card->save();
+                }
+
+                // Находим указанную карту и измняем параметры
+                $card = Card::findOne($model->discount_card);
+                $card->active = true;
+                $card->registration_date = time();
+                $card->user_id = $model->id;
+                $card->save();
+            }
+        }
+        // Если номер скидочной карты удален
+        elseif ($discount_card) {
+            $card = Card::findOne($discount_card);
+            $card->active = false;
+            $card->registration_date = null;
+            $card->user_id = null;
+            $card->save();
+        }
     }
 }
