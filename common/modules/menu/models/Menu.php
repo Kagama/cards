@@ -79,15 +79,16 @@ class Menu extends \yii\db\ActiveRecord
                 $obj = Menu::findOne($this->parent_id);
                 $this->level = empty($obj) ? 0 : ($obj->level + 1);
                 $path = $obj->url;
+            } else {
+                $this->level = 0;
             }
-            $path = ($path != "" ? $path . '/' : "");
             /**
              * Если модуль равен -1 значит это главная страница
              * Путь к главной странице равен "" смотрите конфиг файл urlManager->rules
              */
             if ($this->module_id != -1) {
                 $path = ($path != "" ? $path . '/' : "");
-                $path .= $path . $this->alt_name;
+                $path .= $this->alt_name;
             } else {
                 $path = "/";
             }
