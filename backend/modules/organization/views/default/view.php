@@ -28,7 +28,7 @@ $this->params['breadcrumbs'][] = $this->title; ?>
                 'method' => 'post',
             ],
         ]) ?>
-
+        <?php date_default_timezone_set('Etc/GMT-3')?>
         <?= DetailView::widget([
             'model' => $model,
             'attributes' => [

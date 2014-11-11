@@ -16,7 +16,7 @@ $this->params['breadcrumbs'][] = $this->title; ?>
 
 <div class="card-view padding020 widget">
     <h1><?= Html::encode($this->title) ?></h1>
-
+    <?php date_default_timezone_set('Etc/GMT-3')?>
     <p>
         <?= Html::a('Все карты', ['index'], ['class' => 'btn btn-default']) ?>
         <?= Html::a('Создать', ['create'], ['class' => 'btn btn-success']) ?>
@@ -40,7 +40,7 @@ $this->params['breadcrumbs'][] = $this->title; ?>
                 'discount_card',
                 'end_date' => [
                     'label' => 'Дата окончания действия скидки',
-                    'value' => $model->end_date == null ? '-' : date('d.m.Y, H:i', $model->end_date),
+                    'value' => $model->end_date == null ? '-' : Yii::$app->formatter->asDatetime($model->end_date),
                 ],
                 'user_id' => [
                     'label' => 'ID пользователя',

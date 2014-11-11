@@ -21,7 +21,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= Html::a('Добавить карту', ['create'], ['class' => 'btn btn-success']) ?>
         <?= Html::a('Добавить несколько карт', ['create-many'], ['class' => 'btn btn-success']) ?>
     </p>
-
+    <?php date_default_timezone_set('Etc/GMT-3')?>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
