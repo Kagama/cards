@@ -17,13 +17,13 @@ Yii::$app->view->registerJsFile('http://api-maps.yandex.ru/2.1/?load=package.ful
 Yii::$app->view->registerJs("
             var myMap;
             ymaps.ready(function () {
-                var latitudeInput = $('#organization-longitude');
-                var longitudeInput = $('#organization-latitude');
+                var latitudeInput = $('#organization-latitude');
+                var longitudeInput = $('#organization-longitude');
                 var startGeoPoint;
                 if (latitudeInput.val().length == 0 || longitudeInput.val().length == 0) {
                     startGeoPoint = [42.985532, 47.504067];
                 } else {
-                    startGeoPoint = [longitudeInput.val(), latitudeInput.val()];
+                    startGeoPoint = [latitudeInput.val(), longitudeInput.val()];
                 }
 
                 myMap = new ymaps.Map('yandexMap', {
@@ -41,12 +41,12 @@ Yii::$app->view->registerJs("
                 );
 
                 myMap.geoObjects.add(myPlacemark);
-
+                myMap.behaviors.disable('scrollZoom');
 
                 myMap.events.add('click', function(e) {
                     var coords = e.get('coords');
                     myPlacemark.geometry.setCoordinates(coords);
-//                    setCoordinates(coords[0], coords[1]);
+                    setCoordinates(coords[0], coords[1]);
 
                     event.stopImmediatePropagation();
                 });
@@ -54,42 +54,44 @@ Yii::$app->view->registerJs("
                 myPlacemark.events.add('dragend', function(e) {
                     var thisPlacemark = e.get('target');
                     var coords = thisPlacemark.geometry.getCoordinates();
-//                    setCoordinates(coords[0], coords[1]);
+                    setCoordinates(coords[0], coords[1]);
                 });
 
-                $('#yandexMap').hover(function(){
-                    myMap.behaviors.enable('scrollZoom')
-                },function(){
-                    myMap.behaviors.disable('scrollZoom');
-                });
-//
-////                $('input.ymaps-b-form-input__input').focus(function(){
-////                    alert($(this).attr('class'));
-////                });
-//
-//            });
-//
-//            function setCoordinates(latitude, longitude) {
-//                    $('#organization-latitude').val(latitude);
-//                    $('#organization-longitude').val(longitude);
-//
-//                    var myGeocoder = ymaps.geocode([latitude, longitude]);
-//                    myGeocoder.then(function (result) {
-//                        result.geoObjects.each(function (currentObject) {
-//                                $('#organization-address').val(currentObject.properties.get('text'));
-//                            return false;
-//                        });
-//                    });
-//
-//                }
-//            $('#organization-address').on('keyup', function(){
-//                if ($(this).val() != '') {
-//                    $('.address_enter_type').val('hand');
-//                } else {
-//                    $('.address_enter_type').val(0);
-//                }
+//                $('#yandexMap').hover(function(){
+//                    myMap.behaviors.enable('scrollZoom')
+//                },function(){
+//                    myMap.behaviors.disable('scrollZoom');
+//                });
+
+//                ymaps.geolocation.get().then(function (result) {
+//                    var myLocation = result.geoObjects.get(0).properties.get('text');
+//    //                    myMap.geoObjects.add(result.geoObjects);
+//                    ymaps.route([myLocation, startGeoPoint]).then(
+//                        function (route) {
+//                            myMap.geoObjects.add(route);
+//                        },
+//                        function (error) {
+//                            alert('Возникла ошибка: ' + error.message);
+//                        }
+//                    );
+//                });
+
 
             });
+
+            function setCoordinates(latitude, longitude) {
+                $('#organization-latitude').val(latitude);
+                $('#organization-longitude').val(longitude);
+
+                var myGeocoder = ymaps.geocode([latitude, longitude]);
+
+                myGeocoder.then(function (res) {
+                    res.geoObjects.each(function (currentObject) {
+                        $('#organization-address').val(currentObject.properties.get('text'));
+                        return false;
+                    });
+                });
+            }
         ", View::POS_READY, 'add-organization-action');
 
 ?>
