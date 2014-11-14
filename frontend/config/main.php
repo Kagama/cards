@@ -33,6 +33,9 @@ return [
         'organization' => [
             'class' => 'frontend\modules\organization\OrganizationModule',
         ],
+        'contentBlock' => [
+            'class' => 'frontend\modules\contentBlock\ContentBlockModule'
+        ]
     ],
     'as myDModuleUrlRulesBehavior' => [
         'class' => 'common\behaviors\DModuleUrlRulesBehavior',
@@ -96,14 +99,14 @@ return [
         'assetManager' => [
             'basePath' => '@webroot/assets',
             'baseUrl' => '@web/assets',
-            'bundles' => [
-                'yii\web\JqueryAsset' => [
-                    'sourcePath' => null,
-                    'js' => [
-                        'js/jquery-2.1.0.min.js'
-                    ],
-                ],
-            ]
+//            'bundles' => [
+//                'yii\web\JqueryAsset' => [
+//                    'sourcePath' => null,
+//                    'js' => [
+//                        'js/jquery-2.1.0.min.js'
+//                    ],
+//                ],
+//            ]
         ]
     ],
     'params' => $params,

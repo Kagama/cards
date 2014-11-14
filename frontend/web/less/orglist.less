@@ -1,0 +1,219 @@
+/*
+============================================================================================
+Список организаций
+============================================================================================
+*/
+.organizations {
+	.item {
+		label {
+			margin: 10px 0px;
+		}
+
+		input, select {
+			display: block;
+			border: 8px solid @gray_l;
+			padding: 10px 15px;
+			width: 100%;
+			box-sizing: border-box;
+		}
+
+		select {
+			background-image: url('i/dd-icon.png') no-repeat top center;
+		}
+
+		.button {
+            position: relative;
+            top: 16px;
+			border: 8px solid @blue;
+			background: @blue;
+			text-align: center;
+			text-transform: uppercase;
+			color: #fff;
+			padding: 10px 15px;
+			cursor: pointer;
+		}
+	}
+}
+
+.org-list
+{
+    .item
+    {
+    	margin-bottom: 64px;
+        a
+        {
+            font-size: 14px;
+
+            text-decoration: none;
+
+            color: @blue;
+            &:hover
+            {
+                text-decoration: underline;
+            }
+        }
+    }
+    h1
+    {
+        font-size: 36px;
+        font-weight: 100;
+
+        margin: 0 0 20px 0;
+
+        text-transform: uppercase;
+
+        color: #fff;
+        @media screen and (max-width: 960px)
+        {
+            font-size: 24px;
+        }
+    }
+    .image
+    {
+        position: relative;
+
+        width: 100%;
+        height: 190px;
+        height: 190px;
+
+        text-align: center;
+
+        cursor: pointer;
+
+        background: #fff;
+        @media screen and (max-width: 960px)
+        {
+            img
+            {
+                width: 80%;
+            }
+        }
+        @media screen and (max-width: 768px)
+        {
+            img
+            {
+                height: 100%;
+            }
+        }
+
+        &::before
+        {
+            line-height: 190px;
+
+            position: absolute;
+            top: 0;
+            left: 0;
+
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+
+            content: '';
+            text-align: center;
+            text-transform: uppercase;
+
+            color: transparent;
+
+            opacity: .7;
+
+            backround: transparent;
+            .transition(all .2s ease);
+        }
+
+        &:hover
+        {
+            &::before
+            {
+                background: @blue;
+            }
+
+            span {
+                top: 45%;
+                opacity: 1;
+            }
+        }
+
+        span {
+            display: block;
+            position: absolute;
+            top: 20%;
+            opacity: 0;
+            color: #fff;
+            font-size: 24px;
+            text-transform: uppercase;
+            text-align: center;
+            width: 100%;
+            .transition(all .3s ease);
+        }
+    }
+    h2
+    {
+        font-weight: 100;
+
+        margin: 15px 0;
+
+        text-align: left;
+        text-transform: uppercase;
+
+        color: @blue;
+    }
+    p
+    {
+        font-size: 14px;
+        font-weight: 100;
+        line-height: 1.6;
+
+        color: @gray;
+        padding-bottom: 64px;
+        border-bottom: 8px solid @blue;
+    }
+}
+
+.pager {
+	text-align: center;
+	width: 100%;
+	padding: 0px;
+
+	.pg {
+		display: inline-block;
+		width: 40px;
+		height: 40px;
+		border: 2px solid @gray;
+		border-radius: 50px;
+		margin-top: 48px;
+		color: @gray;
+		line-height: 40px;
+		cursor: pointer;
+		.transition(all .2s ease);
+
+        @media screen and (max-width: 480px)
+        {
+            height: 24px;
+            width: 24px;
+            font-size: 12px;
+            line-height: 24px;
+        }
+
+		&:hover {
+			border: 2px solid @blue;
+		}
+
+        &.active {
+            border: 2px solid @blue;
+        }
+	}
+
+	.prev,
+	.next {
+		margin-left: 20px;
+		margin-right: 20px;
+		font-size: 12px;
+
+        @media screen and (max-width: 480px)
+        {
+            margin-left: 2px;
+            margin-right: 2px;
+        }
+	}
+}

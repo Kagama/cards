@@ -1,0 +1,945 @@
+/*
+============================================================================================
+Fonts
+============================================================================================
+*/
+@font-face {
+    font-family: 'Avante';
+    src: url('/font/avante.ttf') format('truetype');
+    font-weight: 100;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Fatum';
+    src: url('/font/fatum.otf') format('truetype');
+    font-weight: 100;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'socials';
+    src: url('/font/socials.eot?63370350');
+    src: url('/font/socials.eot?63370350#iefix') format('embedded-opentype'), url('/font/socials.woff?63370350') format('woff'), url('/font/socials.ttf?63370350') format('truetype'), url('/font/socials.svg?63370350#socials') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+.avante {
+    font-family: 'Avante', 'Fatum', 'arial';
+}
+.fatum {
+    font-family: 'Fatum', 'Avante', 'arial';
+}
+.socials {
+    font-family: 'socials';
+}
+/*
+============================================================================================
+Основные стили
+============================================================================================
+*/
+body,
+html {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: 'Avante', 'Fatum', 'arial';
+}
+p {
+    margin: 0;
+}
+.container {
+    position: relative;
+}
+* {
+    outline: none;
+}
+section {
+    padding: 35px 0px;
+    position: relative;
+}
+section h1 {
+    color: #201f20;
+    text-transform: uppercase;
+    font-size: 35px;
+    font-weight: 100;
+    margin-left: 10px;
+}
+/*
+=======================
+Типы на главной
+=======================
+*/
+.type .item {
+    text-align: center;
+    position: relative;
+    top: 0px;
+}
+@media screen and (max-width: 960px) {
+    .type .item {
+        border: 1px solid #0094cb;
+        margin-top: 4px;
+    }
+}
+.type .item h2 {
+    font-size: 30px;
+    font-weight: 100;
+    padding: 20px;
+    text-transform: uppercase;
+    border-bottom: 10px solid #0094cb;
+}
+.type .item img {
+    display: inline-block;
+    margin: 15px 0;
+}
+.type .item p {
+    font-size: 14px;
+    line-height: 24px;
+}
+.type .item .button {
+    font-size: 12px;
+    display: block;
+    width: 100%;
+    margin-top: 15px;
+    padding: 15px 0;
+    text-decoration: none;
+    text-transform: uppercase;
+    color: #fff;
+    background: #0094cb;
+    -webkit-transition: background 0.2s ease;
+    -moz-transition: background 0.2s ease;
+    -ms-transition: background 0.2s ease;
+    -o-transition: background 0.2s ease;
+    transition: background 0.2s ease;
+}
+.type .item .button:hover {
+    background: #201f20;
+}
+/*
+=======================
+Почему мы лучшие
+=======================
+*/
+.why-we h1 {
+    font-size: 36px;
+    font-weight: 100;
+    text-transform: uppercase;
+}
+@media screen and (max-width: 960px) {
+    .why-we h1 {
+        font-size: 24px;
+    }
+}
+.why-we p {
+    font-size: 16px;
+    font-weight: 100;
+    line-height: 1.6;
+}
+/*
+*/
+.map-all {
+    width: 100%;
+    height: 400px;
+    background: red;
+}
+/*
+============================================================================================
+Header
+============================================================================================
+*/
+header {
+    width: 100%;
+    padding: 15px 0px;
+    background: #201f20;
+    font-family: 'Avante', 'Fatum', 'arial';
+}
+@media screen and (max-width: 960px) {
+    header {
+        text-align: center;
+    }
+}
+header .title , header .title a {
+    position: relative;
+    top: 0px;
+    font-size: 30px;
+    font-weight: bold;
+    color: #fff;
+    text-decoration: none;
+}
+@media screen and (max-width: 960px) {
+    header .title {
+        width: 100%;
+    }
+}
+header nav {
+    text-align: right;
+    font-family: 'Fatum', 'Avante', 'arial';
+}
+@media screen and (max-width: 768px) {
+    header nav {
+        width: 100%;
+        text-align: center;
+        border-top: 1px solid #a1a1a1;
+    }
+    header nav li {
+        disaply: block;
+    }
+}
+header nav ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+header nav ul li {
+    position: relative;
+    right: 0px;
+    display: inline-block;
+    padding: 10px;
+}
+header nav ul li a,
+header nav ul li a:visited,
+header nav ul li a:active {
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 14px;
+    color: #fff;
+    -webkit-transition: color 0.2s ease;
+    -moz-transition: color 0.2s ease;
+    -ms-transition: color 0.2s ease;
+    -o-transition: color 0.2s ease;
+    transition: color 0.2s ease;
+}
+header nav ul li a:hover,
+header nav ul li a:visited:hover,
+header nav ul li a:active:hover {
+    color: #0094cb;
+}
+/*
+============================================================================================
+Слайдшоу
+============================================================================================
+*/
+section.slider {
+    width: 100%;
+    height: 90%;
+    margin: 0px;
+    padding: 0px;
+    background: #201f20;
+}
+section.slider .big {
+    position: absolute;
+    left: 50%;
+    top: 0%;
+    opacity: 0;
+    margin-left: -364px;
+    display: block;
+    font-size: 72px;
+    color: #fff;
+    text-transform: uppercase;
+    width: 728px;
+    text-align: center;
+}
+@media screen and (max-width: 960px) {
+    section.slider .big {
+        font-size: 60px;
+        width: 640px;
+        margin-left: -320px;
+    }
+}
+@media screen and (max-width: 640px) {
+    section.slider .big {
+        font-size: 42px;
+        width: 400px;
+        margin-left: -200px;
+    }
+}
+@media screen and (max-width: 420px) {
+    section.slider .big {
+        font-size: 24px;
+        width: 320px;
+        margin-left: -160px;
+    }
+}
+section.slider .slide-arrow {
+    position: absolute;
+    top: 50%;
+    margin-top: -24px;
+    width: 48px;
+    height: 48px;
+    border-radius: 6px;
+    border: 4px solid #fff;
+    background: #201f20;
+    cursor: pointer;
+    -webkit-transition: background 0.2s ease;
+    -moz-transition: background 0.2s ease;
+    -ms-transition: background 0.2s ease;
+    -o-transition: background 0.2s ease;
+    transition: background 0.2s ease;
+}
+section.slider .slide-arrow:hover {
+    background: #0094cb;
+}
+section.slider .slide-arrow:active {
+    margin-top: -18px;
+}
+section.slider .slide-arrow.left {
+    left: 10px;
+    background-image: url('/img/i/slide-arr.png');
+    background-repeat: no-repeat;
+    background-position: 0px 0px;
+}
+section.slider .slide-arrow.right {
+    right: 10px;
+    background-image: url('/img/i/slide-arr.png');
+    background-repeat: no-repeat;
+    background-position: -48px 0px;
+}
+.cards {
+    width: 100%;
+    position: absolute;
+    bottom: 0px;
+    text-align: center;
+}
+.cards img {
+    position: relative;
+    top: 0px;
+    margin: 10px;
+    cursor: pointer;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+.cards img:hover {
+    top: -6px;
+}
+@media screen and (max-width: 960px) {
+    .cards img {
+        width: 100px;
+        margin: 8px;
+    }
+}
+@media screen and (max-width: 640px) {
+    .cards img {
+        width: 80px;
+        margin: 6px;
+    }
+}
+@media screen and (max-width: 420px) {
+    .cards img {
+        width: 60px;
+        margin: 4px;
+    }
+}
+.slideshow {
+    left: 0px;
+    top: 0px;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    text-align: center;
+}
+.slideshow img {
+    max-width: 100%;
+}
+.slide {
+    height: 100%;
+    width: 100%;
+    background: green;
+    text-align: center;
+    overflow: hidden;
+    background-size: cover;
+}
+.slide.first {
+    background: url('../img/slide.jpg') no-repeat center;
+    background-size: cover;
+}
+.slide.second {
+    background: url('../img/slide2.jpg') no-repeat center;
+    background-size: cover;
+}
+.slide.third {
+    background: url('../img/slide3.jpg') no-repeat center;
+    background-size: cover;
+}
+.slideinfo {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    height: 100%;
+    width: 100%;
+    z-index: 500;
+}
+/*
+============================================================================================
+Последние зарегистрированные
+============================================================================================
+*/
+.last-reg {
+    width: 100%;
+    padding: 45px 0;
+    text-align: center;
+    background: #201f20;
+}
+.last-reg .item,
+.last-reg .title {
+    text-align: left;
+}
+.last-reg .item a,
+.last-reg .title a {
+    font-size: 14px;
+    text-decoration: none;
+    color: #0094cb;
+}
+.last-reg .item a:hover,
+.last-reg .title a:hover {
+    text-decoration: underline;
+}
+.last-reg h1 {
+    font-size: 36px;
+    font-weight: 100;
+    margin: 0 0 20px 0;
+    text-transform: uppercase;
+    color: #fff;
+}
+@media screen and (max-width: 960px) {
+    .last-reg h1 {
+        font-size: 24px;
+    }
+}
+.last-reg .image {
+    position: relative;
+    width: 100%;
+    height: 190px;
+    text-align: center;
+    cursor: pointer;
+    background: #fff;
+}
+@media screen and (max-width: 960px) {
+    .last-reg .image img {
+        width: 80%;
+    }
+}
+@media screen and (max-width: 768px) {
+    .last-reg .image img {
+        height: 100%;
+    }
+}
+.last-reg .image::before {
+    line-height: 190px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    content: '';
+    text-align: center;
+    text-transform: uppercase;
+    color: transparent;
+    opacity: .7;
+    backround: transparent;
+    -webkit-transition: all 0.2s ease;
+    -moz-transition: all 0.2s ease;
+    -ms-transition: all 0.2s ease;
+    -o-transition: all 0.2s ease;
+    transition: all 0.2s ease;
+}
+.last-reg .image:hover::before {
+    background: #0094cb;
+}
+.last-reg .image:hover span {
+    top: 45%;
+    opacity: 1;
+}
+.last-reg .image span {
+    display: block;
+    position: absolute;
+    top: 20%;
+    opacity: 0;
+    color: #fff;
+    font-size: 24px;
+    text-transform: uppercase;
+    text-align: center;
+    width: 100%;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+.last-reg h2 {
+    font-weight: 100;
+    margin: 15px 0;
+    text-align: left;
+    text-transform: uppercase;
+    color: #0094cb;
+}
+.last-reg p {
+    font-size: 14px;
+    font-weight: 100;
+    line-height: 1.6;
+    color: #fff;
+}
+.last-reg .button {
+    font-size: 20px;
+    display: inline-block;
+    margin: 20px 0 0 0;
+    padding: 15px 45px;
+    text-decoration: none;
+    text-transform: uppercase;
+    color: #fff;
+    background: #0094cb;
+    -webkit-transition: background 0.2s ease;
+    -moz-transition: background 0.2s ease;
+    -ms-transition: background 0.2s ease;
+    -o-transition: background 0.2s ease;
+    transition: background 0.2s ease;
+}
+.last-reg .button:hover {
+    background: #006f98;
+}
+/*
+============================================================================================
+Регистрация новой компании
+============================================================================================
+*/
+.register h1 {
+    font-size: 36px;
+    font-weight: 100;
+    text-transform: uppercase;
+}
+.register .item {
+    margin-bottom: 15px;
+}
+.register label {
+    font-size: 16px;
+    margin: 10px 0px;
+    display: block;
+}
+.register label::after {
+    position: relative;
+    top: -2px;
+    content: '*';
+    color: #0094cb;
+}
+.register input,
+.register textarea {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 12px 20px;
+    font-size: 1em;
+    border: 8px solid #a1a1a1;
+    outline: none;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+    font-family: 'Avante', 'Fatum', 'arial';
+}
+.register input:active,
+.register textarea:active,
+.register input:focus,
+.register textarea:focus,
+.register input:hover,
+.register textarea:hover {
+    border: 8px solid #0094cb;
+}
+/*
+============================================================================================
+Проверка карты
+============================================================================================
+*/
+.card-check {
+    background: #201f20;
+    background-image: url('../img/card-check-2.png'), url('../img/card-check-1.png');
+    background-repeat: no-repeat, no-repeat;
+    background-position: 100% top, 90% top;
+    padding: 6em 0px;
+}
+@media screen and (max-width: 768px) {
+    .card-check {
+        padding: 2em 0em;
+        background: #201f20;
+    }
+}
+.card-check .container {
+    box-sizing: border-box;
+}
+.card-check .title {
+    font-size: 72px;
+}
+@media screen and (max-width: 768px) {
+    .card-check .title {
+        font-size: 48px;
+        text-align: center;
+    }
+}
+.card-check .title span {
+    display: block;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #0094cb;
+    width: 200px;
+}
+@media screen and (max-width: 768px) {
+    .card-check .title span {
+        width: 100%;
+    }
+}
+.card-check input {
+    background: transparent;
+    text-align: center;
+    display: block;
+    box-sizing: border-box;
+    padding: 16px;
+    color: #fff;
+    width: 100%;
+    border: 6px solid #fff;
+    font-size: 40px;
+    margin-top: 1.5em 0em;
+}
+@media screen and (max-width: 768px) {
+    .card-check input {
+        font-size: 24px;
+        border: 4px solid #fff;
+        padding: 8px;
+    }
+}
+@media screen and (max-width: 768px) {
+    .card-check .status {
+        text-align: center;
+    }
+}
+.card-check .status span {
+    font-size: 40px;
+    font-weight: 100;
+    display: block;
+    color: #fff;
+    text-transform: uppercase;
+}
+.card-check .status .card-status.active {
+    color: #0094cb;
+}
+.card-check .status .card-status.inactive {
+    color: red;
+}
+.card-check .status .card-status.neutral {
+    color: #a1a1a1;
+}
+/*
+============================================================================================
+Карта footer
+============================================================================================
+*/
+.map-footer {
+    padding: 0px;
+    width: 100%;
+}
+.map-footer .info {
+    background: #fff;
+    padding: 20px 0px 10px 0px;
+    text-align: center;
+    box-sizing: padding-box;
+    z-index: 50;
+}
+.map-footer .info h2 {
+    text-transform: uppercase;
+    font-size: 28px;
+    color: #0094cb;
+}
+.map-footer .info span {
+    display: block;
+    font-size: 18px;
+    margin-bottom: 4px;
+}
+.map-footer .info .phone {
+    font-size: 36px;
+    margin: 25px 0px;
+}
+.map-footer .info .socials {
+    margin: 48px 0px;
+    margin-bottom: 100px;
+    /* '☺' 1*/
+    /* '☻' 2*/
+    /* '♥' 3*/
+    /* '♦' 4*/
+}
+.map-footer .info .socials .i {
+    width: 64px;
+    height: 64px;
+    line-height: 64px;
+    text-align: center;
+    display: inline-block;
+    border: 2px solid #201f20;
+    cursor: pointer;
+    box-sizing: border-box;
+    font-size: 26px;
+    -webkit-transition: all 0.2s ease;
+    -moz-transition: all 0.2s ease;
+    -ms-transition: all 0.2s ease;
+    -o-transition: all 0.2s ease;
+    transition: all 0.2s ease;
+    -webkit-transform: scale(1);
+    -moz-transform: scale(1);
+    -ms-transform: scale(1);
+    -o-transform: scale(1);
+    transform: scale(1);
+    -webkit-border-radius: 50px;
+    -moz-border-radius: 50px;
+    border-radius: 50px;
+    -ms-border-radius: 50px;
+    -o-border-radius: 50px;
+    font-family: 'socials';
+    color: #201f20;
+}
+.map-footer .info .socials .i:hover {
+    border: 2px solid #0094cb;
+    color: #0094cb;
+    -webkit-transform: scale(1.1);
+    -moz-transform: scale(1.1);
+    -ms-transform: scale(1.1);
+    -o-transform: scale(1.1);
+    transform: scale(1.1);
+}
+.map-footer .info .socials .tw:before {
+    content: '\263a';
+}
+.map-footer .info .socials .fb:before {
+    content: '\263b';
+}
+.map-footer .info .socials .vk:before {
+    content: '\2665';
+}
+.map-footer .info .socials .ok:before {
+    content: '\2666';
+}
+.map-footer .info .cred {
+    font-size: 14px;
+}
+.map-footer #fmap {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+@media screen and (max-width: 640px) {
+    .map-footer #fmap {
+        position: relative;
+        height: 300px;
+    }
+}
+.org-info .info {
+    text-align: center;
+}
+.org-info .info h1 {
+    color: #00baff;
+    margin-top: 0px;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+.org-info .info span {
+    display: block;
+    margin: 8px 0px;
+}
+.org-info .info span.phone {
+    font-size: 32px;
+    margin: 32px 0px;
+}
+.org-info .description {
+    padding-top: 32px;
+}
+.org-info .description a {
+    color: #0094cb;
+}
+.org-info .description p {
+    margin: 32px 0px;
+}
+.org-info .map {
+    height: 420px;
+    background: #a1a1a1;
+}
+/*
+============================================================================================
+Список организаций
+============================================================================================
+*/
+.organizations .item label {
+    margin: 10px 0px;
+}
+.organizations .item input,
+.organizations .item select {
+    display: block;
+    border: 8px solid #a1a1a1;
+    padding: 10px 15px;
+    width: 100%;
+    box-sizing: border-box;
+}
+.organizations .item select {
+    background-image: url('/img/i/dd-icon.png') no-repeat top center;
+}
+.organizations .item .button {
+    position: relative;
+    top: 16px;
+    border: 8px solid #0094cb;
+    background: #0094cb;
+    text-align: center;
+    text-transform: uppercase;
+    color: #fff;
+    padding: 10px 15px;
+    cursor: pointer;
+}
+.org-list .item {
+    margin-bottom: 64px;
+}
+.org-list .item a {
+    font-size: 14px;
+    text-decoration: none;
+    color: #0094cb;
+}
+.org-list .item a:hover {
+    text-decoration: underline;
+}
+.org-list h1 {
+    font-size: 36px;
+    font-weight: 100;
+    margin: 0 0 20px 0;
+    text-transform: uppercase;
+    color: #fff;
+}
+@media screen and (max-width: 960px) {
+    .org-list h1 {
+        font-size: 24px;
+    }
+}
+.org-list .image {
+    position: relative;
+    width: 100%;
+    height: 190px;
+    text-align: center;
+    cursor: pointer;
+    background: #fff;
+}
+@media screen and (max-width: 960px) {
+    .org-list .image img {
+        width: 80%;
+    }
+}
+@media screen and (max-width: 768px) {
+    .org-list .image img {
+        height: 100%;
+    }
+}
+.org-list .image::before {
+    line-height: 190px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    content: '';
+    text-align: center;
+    text-transform: uppercase;
+    color: transparent;
+    opacity: .7;
+    backround: transparent;
+    -webkit-transition: all 0.2s ease;
+    -moz-transition: all 0.2s ease;
+    -ms-transition: all 0.2s ease;
+    -o-transition: all 0.2s ease;
+    transition: all 0.2s ease;
+}
+.org-list .image:hover::before {
+    background: #0094cb;
+}
+.org-list .image:hover span {
+    top: 45%;
+    opacity: 1;
+}
+.org-list .image span {
+    display: block;
+    position: absolute;
+    top: 20%;
+    opacity: 0;
+    color: #fff;
+    font-size: 24px;
+    text-transform: uppercase;
+    text-align: center;
+    width: 100%;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+.org-list h2 {
+    font-weight: 100;
+    margin: 15px 0;
+    text-align: left;
+    text-transform: uppercase;
+    color: #0094cb;
+}
+.org-list p {
+    font-size: 14px;
+    font-weight: 100;
+    line-height: 1.6;
+    color: #201f20;
+    padding-bottom: 64px;
+    border-bottom: 8px solid #0094cb;
+}
+.pager {
+    text-align: center;
+    width: 100%;
+    padding: 0px;
+}
+.pager .pg {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    border: 2px solid #201f20;
+    border-radius: 50px;
+    margin-top: 48px;
+    color: #201f20;
+    line-height: 40px;
+    cursor: pointer;
+    -webkit-transition: all 0.2s ease;
+    -moz-transition: all 0.2s ease;
+    -ms-transition: all 0.2s ease;
+    -o-transition: all 0.2s ease;
+    transition: all 0.2s ease;
+}
+@media screen and (max-width: 480px) {
+    .pager .pg {
+        height: 24px;
+        width: 24px;
+        font-size: 12px;
+        line-height: 24px;
+    }
+}
+.pager .pg:hover {
+    border: 2px solid #0094cb;
+}
+.pager .pg.active {
+    border: 2px solid #0094cb;
+}
+.pager .prev,
+.pager .next {
+    margin-left: 20px;
+    margin-right: 20px;
+    font-size: 12px;
+}
+@media screen and (max-width: 480px) {
+    .pager .prev,
+    .pager .next {
+        margin-left: 2px;
+        margin-right: 2px;
+    }
+}
+
+/*####################################################################################################################*/
+/*#################################### Рашид Комментарии #############################################################*/
+
+/*####################################################################################################################*/

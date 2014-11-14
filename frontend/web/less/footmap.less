@@ -1,0 +1,81 @@
+/*
+============================================================================================
+Карта footer
+============================================================================================
+*/
+.map-footer {
+	padding: 0px;
+	width:100%;
+
+	.info {
+		background: #fff;
+		padding: 20px 0px 10px 0px;
+		text-align: center;
+
+		box-sizing: padding-box;
+
+		z-index: 50;
+
+		h2 {
+			text-transform: uppercase;
+			font-size: 28px;
+			color: @blue;
+		}
+
+		span {
+			display: block;
+			font-size: 18px;
+			margin-bottom: 4px;
+		}
+
+		.phone {
+			font-size: 36px;
+			margin: 25px 0px;
+		}
+
+		.socials {
+			margin: 48px 0px;
+			margin-bottom: 100px;
+			.i {
+				width: 64px;
+				height: 64px;
+				line-height: 64px;
+				text-align: center;
+				display: inline-block;
+				border: 2px solid @gray;
+				cursor: pointer;
+				box-sizing: border-box;
+				font-size: 26px;
+				.transition(all .2s ease);
+				.transform( scale(1) );
+				.radius(50px);
+				.socials;
+				color: @gray;
+				&:hover {
+					border: 2px solid @blue;
+					color: @blue;
+					.transform( scale(1.1) );
+				}				
+			}
+
+			.tw:before { content: '\263a'; } /* '☺' 1*/
+			.fb:before { content: '\263b'; } /* '☻' 2*/
+			.vk:before { content: '\2665'; } /* '♥' 3*/
+			.ok:before { content: '\2666'; } /* '♦' 4*/
+		}
+
+		.cred {
+			font-size: 14px;
+		}
+	}
+
+	#fmap {
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		@media screen and (max-width: 640px) {
+			position: relative;
+			height: 300px;
+        }
+	}
+}

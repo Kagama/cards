@@ -18,20 +18,13 @@ class AppAsset extends AssetBundle
     public $basePath = '@webroot';
     public $baseUrl = '@web';
     public $css = [
-        'css/style.css',
-        'css/fancySelect.css'
+        'css/libs.css',
+        'css/main.css'
     ];
     public $js = [
-        'js/jquery.MultiFile.js',
-        'js/fancySelect.js',
-        'js/FileUpload/jquery.ui.widget.js',
-        'js/FileUpload/jquery.iframe-transport.js',
-        'js/FileUpload/jquery.fileupload.js',
-        'js/scripts.js',
-
-
-//        'js/ajaxFormSubmit.js'
-//        'js/jquery-fileupload.min.js'
+        'http://api-maps.yandex.ru/2.1/?lang=ru_RU',
+        'js/libs.min.js',
+        'js/scripts.js'
     ];
     public $depends = [
         'yii\web\YiiAsset',

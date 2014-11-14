@@ -45,6 +45,12 @@ return [
 
         'card' => [
             'class' => 'backend\modules\card\CardModule',
+        ],
+        'contentBlock' => [
+            'class' => 'backend\modules\contentBlock\ContentBlockModule'
+        ],
+        'layoutEditor' => [
+            'class' => 'backend\modules\layoutEditor\LayoutEditorModule'
         ]
     ],
     'components' => [

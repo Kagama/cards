@@ -40,6 +40,17 @@ $route = Yii::$app->controller->getUniqueId();
             <!--            </ul>-->
         </li>
 
+        <li class="<?= ($route == 'contentBlock/default') ? "active" : "panel"; ?>">
+            <a class="accordion-toggle collapsed"
+               href="<?= Url::toRoute('/contentBlock/default/index') ?>"><i class="fa fa-edit"></i> <span
+                    class="name">Информационный блок</span></a>
+            <!--            <ul id="stats-collapse" class="panel-collapse collapse">-->
+            <!--                <li><a href="stat_statistics.html">Stats</a></li>-->
+            <!--                <li><a href="stat_charts.html">Charts</a></li>-->
+            <!--                <li><a href="stat_realtime.html">Realtime</a></li>-->
+            <!--            </ul>-->
+        </li>
+
         <li class="<?= ($route == 'card/default') ? "active" : "panel"; ?>">
             <a class="accordion-toggle collapsed"
                href="<?= Url::toRoute('/card/default/index') ?>"><i class="fa"></i> <span
@@ -62,6 +73,11 @@ $route = Yii::$app->controller->getUniqueId();
                 <!--                <li><a href="landing.html" data-no-pjax>Landing</a></li>-->
                 <!--                <li><a href="white/index.html" data-no-pjax>White <i class="fa fa-external-link-square"></i></a></li>-->
             </ul>
+        </li>
+        <li class="<?= ($route == 'layoutEditor/default') ? "active" : "panel"; ?>">
+            <a class="accordion-toggle collapsed"
+               href="<?= Url::toRoute('/layoutEditor/default/index') ?>"><i class="fa fa-edit"></i> <span
+                    class="name">Редактирование php файлов</span></a>
         </li>
         <li class="<?= ($route == 'user/default' || $route == 'mailing/default') ? "active" : "panel"; ?>">
             <a class="accordion-toggle collapsed" data-toggle="collapse"

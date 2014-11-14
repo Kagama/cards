@@ -1,0 +1,5 @@
+
+.icon-tw:before { content: '\263a'; } /* '☺' */
+.icon-fb:before { content: '\263b'; } /* '☻' */
+.icon-vk:before { content: '\2665'; } /* '♥' */
+.icon-ok:before { content: '\2666'; } /* '♦' */
