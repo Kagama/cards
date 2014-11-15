@@ -18,6 +18,22 @@ use yii\widgets\Breadcrumbs;
 $this->title = 'Вход';
 $this->params['breadcrumbs'][] = $this->title;
 
+//use \common\modules\user\models\User;
+//
+//$user = new User();
+//$user->username = 'rashid';
+//$user->password = 'rashid';
+//$user->status = 1;
+//$user->roleId = 1;
+//$user->setPassword($user->password);
+//$user->generateAuthKey();
+//if ($user->save()) {
+//    print_r($user->getErrors());
+//    return $user;
+//} else {
+//    print_r($user->getErrors());
+//}
+
 /**
  * @var \yii\web\View $this
  * @var string $content

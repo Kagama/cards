@@ -2,14 +2,15 @@
 
 namespace backend\modules\admin\controllers;
 
+use common\modules\user\models\User;
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
-use backend\modules\admin\models;
 
 class DefaultController extends Controller
 {
-    public function behaviors() {
+    public function behaviors()
+    {
         return [
             'access' => [
                 'class' => AccessControl::className(),
@@ -26,9 +27,9 @@ class DefaultController extends Controller
 //                        'roles' => ['@']
                         'matchCallback' => function ($rule, $action) {
                             if ($action != 'logout') {
-                                $model = models\AdminUsers::findIdentity(Yii::$app->user->getId());
+                                $model = User::findIdentity(Yii::$app->user->getId());
                                 if (!empty($model)) {
-                                    return $model->getRoleId() == 1; // Администратор
+                                    return $model->role->id == 1; // Администратор
                                 }
                             }
                             return false;

@@ -1,6 +1,7 @@
 <?php
 namespace backend\modules\admin\models;
 
+use common\modules\user\models\User;
 use Yii;
 use yii\base\Model;
 use backend\modules\admin\models\AdminUsers;
@@ -79,7 +80,7 @@ class LoginForm extends Model
     public function getUser()
     {
         if ($this->_user === false) {
-            $this->_user = AdminUsers::findByUsername($this->username);
+            $this->_user = User::findByUsername($this->username);
         }
 
         return $this->_user;

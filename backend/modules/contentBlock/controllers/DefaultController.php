@@ -2,6 +2,7 @@
 
 namespace backend\modules\contentBlock\controllers;
 
+use common\modules\user\models\User;
 use Yii;
 use common\modules\contentBlock\models\ContentBlock;
 use common\modules\contentBlock\models\search\ContentBlockSearch;
@@ -9,7 +10,6 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
-use backend\modules\admin\models\AdminUsers;
 use common\modules\draft\models\Draft;
 
 /**
@@ -35,9 +35,9 @@ class DefaultController extends Controller
                         'allow' => true,
                         'actions' => ['index', 'view', 'create', 'update', 'delete'],
                         'matchCallback' => function ($rule, $action) {
-                            $model = AdminUsers::findIdentity(Yii::$app->user->getId());
+                            $model = User::findIdentity(Yii::$app->user->getId());
                             if (!empty($model)) {
-                                return $model->getRoleId() == 1; // Администратор
+                                return $model->role->id == 1; // Администратор
                             }
                             return false;
                         }

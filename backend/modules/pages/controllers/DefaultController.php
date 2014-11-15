@@ -2,6 +2,7 @@
 
 namespace backend\modules\pages\controllers;
 
+use common\modules\user\models\User;
 use Yii;
 use common\modules\pages\models\Pages;
 use common\modules\pages\models\search\PagesSearch;
@@ -9,7 +10,7 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
-use backend\modules\admin\models\AdminUsers;
+
 
 class DefaultController extends Controller
 {
@@ -31,14 +32,12 @@ class DefaultController extends Controller
                         'actions' => ['index', 'view', 'create', 'update', 'delete'],
 //                        'roles' => ['@']
                         'matchCallback' => function ($rule, $action) {
-                                if ($action != 'logout') {
-                                    $model = AdminUsers::findIdentity(Yii::$app->user->getId());
-                                    if (!empty($model)) {
-                                        return $model->getRoleId() == 1; // Администратор
-                                    }
-                                }
-                                return false;
+                            $model = User::findIdentity(Yii::$app->user->getId());
+                            if (!empty($model)) {
+                                return $model->role->id == 1; // Администратор
                             }
+                            return false;
+                        }
                     ]
                 ]
             ]
