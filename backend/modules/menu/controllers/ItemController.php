@@ -3,6 +3,7 @@
 namespace backend\modules\menu\controllers;
 
 use common\modules\appmodule\models\Module;
+use common\modules\user\models\User;
 use Yii;
 use common\modules\menu\models\Menu;
 use common\modules\menu\models\search\MenuSearch;
@@ -10,7 +11,7 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
-use backend\modules\admin\models\AdminUsers;
+
 
 /**
  * DefaultController implements the CRUD actions for Menu model.
@@ -35,12 +36,12 @@ class ItemController extends Controller
                         'allow' => true,
                         'actions' => ['index', 'view', 'create', 'update', 'delete', 'update-position'],
                         'matchCallback' => function ($rule, $action) {
-                                $model = AdminUsers::findIdentity(Yii::$app->user->getId());
-                                if (!empty($model)) {
-                                    return $model->getRoleId() == 1; // Администратор
-                                }
-                                return false;
+                            $model = User::findIdentity(Yii::$app->user->getId());
+                            if (!empty($model)) {
+                                return $model->role->id == 1; // Администратор
                             }
+                            return false;
+                        }
                     ]
                 ]
             ]
@@ -51,9 +52,10 @@ class ItemController extends Controller
      * Update position
      * @param $id
      */
-    public function actionUpdatePosition($id) {
+    public function actionUpdatePosition($id)
+    {
         if (Yii::$app->request->isAjax) {
-            $model = Menu::findOne((int) $id);
+            $model = Menu::findOne((int)$id);
             $old_position = $model->position;
             $new_position = Yii::$app->request->post('new_pos');
             if ($old_position != $new_position) {
@@ -112,7 +114,6 @@ class ItemController extends Controller
             if ($model->save())
                 return $this->redirect(['view', 'id' => $model->id, 'group_id' => $model->group_id]);
         }
-
 
 
         $model->group_id = (empty($model->group_id) ? Yii::$app->request->get('group_id') : $model->group_id);

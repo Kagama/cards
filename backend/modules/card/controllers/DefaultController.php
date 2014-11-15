@@ -15,7 +15,6 @@ use yii\web\Controller;
 use Yii;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
-use backend\modules\admin\models\AdminUsers;
 
 class DefaultController extends Controller
 {
@@ -38,9 +37,9 @@ class DefaultController extends Controller
                         'actions' => ['index', 'view', 'create', 'create_many', 'update', 'delete'],
 //                        'roles' => ['@']
                         'matchCallback' => function ($rule, $action) {
-                            $model = AdminUsers::findIdentity(Yii::$app->user->getId());
+                            $model = User::findIdentity(Yii::$app->user->getId());
                             if (!empty($model)) {
-                                return $model->getRoleId() == 1; // Администратор
+                                return $model->role->id == 1; // Администратор
                             }
                             return false;
                         }

@@ -2,6 +2,7 @@
 
 namespace backend\modules\menu\controllers;
 
+use common\modules\user\models\User;
 use Yii;
 use common\modules\menu\models\MenuGroup;
 use common\modules\menu\models\search\MenuGroupSearch;
@@ -9,7 +10,7 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
-use backend\modules\admin\models\AdminUsers;
+
 
 /**
  * GroupController implements the CRUD actions for MenuGroup model.
@@ -34,12 +35,12 @@ class GroupController extends Controller
                         'allow' => true,
                         'actions' => ['index', 'view', 'create', 'update', 'delete'],
                         'matchCallback' => function ($rule, $action) {
-                                $model = AdminUsers::findIdentity(Yii::$app->user->getId());
-                                if (!empty($model)) {
-                                    return $model->getRoleId() == 1; // Администратор
-                                }
-                                return false;
+                            $model = User::findIdentity(Yii::$app->user->getId());
+                            if (!empty($model)) {
+                                return $model->role->id == 1; // Администратор
                             }
+                            return false;
+                        }
                     ]
                 ]
             ]

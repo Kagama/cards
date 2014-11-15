@@ -21,7 +21,7 @@ use common\modules\card\models\Card;
  * @property string $password_reset_token
  * @property string $email
  * @property string $phone
- * @property integer $role
+ * @property integer $role_id
  * @property integer $status
  * @property string $car_number
  * @property integer $created_at
@@ -47,7 +47,7 @@ class User extends ActiveRecord implements IdentityInterface
     {
         return [
             [['username', 'password', 'surname', 'name', 'phone', 'car_number', 'city'], 'required'],
-            [['role', 'status', 'created_at', 'updated_at', 'city', 'discount_card', 'month'], 'integer'],
+            [['role_id', 'status', 'created_at', 'updated_at', 'city', 'discount_card', 'month'], 'integer'],
             [['username', 'password_hash', 'password_reset_token'], 'string', 'max' => 255],
             [['auth_key'], 'string', 'max' => 32],
             ['car_number', 'match', 'pattern' => '/^(а|в|е|к|м|н|о|р|с|т|у|х){1}[0-9]{3}(а|в|е|к|м|н|о|р|с|т|у|х){2}[0-9]{2}$/i'],
@@ -68,7 +68,7 @@ class User extends ActiveRecord implements IdentityInterface
             'password_hash' => 'Password Hash',
             'password_reset_token' => 'Password Reset Token',
             'phone' => 'Контактный номер телефона',
-            'role' => 'Роль',
+            'role_id' => 'Роль',
             'status' => 'Статус',
             'created_at' => 'Дата создания',
             'updated_at' => 'Дата обновления',
@@ -134,7 +134,7 @@ class User extends ActiveRecord implements IdentityInterface
     /**
      * Finds user by username
      *
-     * @param  string      $username
+     * @param  string $username
      * @return static|null
      */
     public static function findByUsername($username)
@@ -145,14 +145,14 @@ class User extends ActiveRecord implements IdentityInterface
     /**
      * Finds user by password reset token
      *
-     * @param  string      $token password reset token
+     * @param  string $token password reset token
      * @return static|null
      */
     public static function findByPasswordResetToken($token)
     {
         $expire = \Yii::$app->params['user.passwordResetTokenExpire'];
         $parts = explode('_', $token);
-        $timestamp = (int) end($parts);
+        $timestamp = (int)end($parts);
         if ($timestamp + $expire < time()) {
             // token expired
             return null;
@@ -191,7 +191,7 @@ class User extends ActiveRecord implements IdentityInterface
     /**
      * Validates password
      *
-     * @param  string  $password password to validate
+     * @param  string $password password to validate
      * @return boolean if password provided is valid for current user
      */
     public function validatePassword($password)
@@ -242,15 +242,13 @@ class User extends ActiveRecord implements IdentityInterface
     {
         $length = strlen($bank_card);
         $sum = 0;
-        for($i = $length-1; $i>=0; $i--)
-        {
+        for ($i = $length - 1; $i >= 0; $i--) {
             if ($i % 2 == 0) {
                 $product = $bank_card[$i] * 2;
                 if ($product > 9)
                     $product -= 9;
                 $sum += $product;
-            }
-            else
+            } else
                 $sum += $bank_card[$i];
         }
         if ($sum % 10 == 0)
@@ -260,18 +258,20 @@ class User extends ActiveRecord implements IdentityInterface
     }
 
 
-    public static function getAllLikeJsList () {
+    public static function getAllLikeJsList()
+    {
         $temp_js_list = "";
-        $tags = User::find()->where(['discount_card' => 0 ])->orderBy('name ASC')->all();
+        $tags = User::find()->where(['discount_card' => 0])->orderBy('name ASC')->all();
         foreach ($tags as $tag) {
-            $temp_js_list .= (empty($temp_js_list) ? "" : ", ")." ".$tag->id." - ".$tag->username;
+            $temp_js_list .= (empty($temp_js_list) ? "" : ", ") . " " . $tag->id . " - " . $tag->username;
         }
         $temp_js_list = explode(",", $temp_js_list);
         return $temp_js_list;
     }
 
 
-    public static function changeDiscountCard($discount_card, $model = 0){
+    public static function changeDiscountCard($discount_card, $model = 0)
+    {
         // Если номер скидочной карты задан
         if ($model->discount_card) {
 
@@ -294,8 +294,7 @@ class User extends ActiveRecord implements IdentityInterface
                 $card->user_id = $model->id;
                 $card->save();
             }
-        }
-        // Если номер скидочной карты удален
+        } // Если номер скидочной карты удален
         elseif ($discount_card) {
             $card = Card::findOne($discount_card);
             $card->active = false;
@@ -303,5 +302,10 @@ class User extends ActiveRecord implements IdentityInterface
             $card->user_id = null;
             $card->save();
         }
+    }
+
+    public function getRole()
+    {
+        return $this->hasOne(UserRole::className(), ['id' => 'role_id']);
     }
 }

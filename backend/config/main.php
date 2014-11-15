@@ -59,7 +59,7 @@ return [
         ],
         'session' => [
             'class' => 'yii\web\DbSession',
-            'sessionTable' => 'backend_session'
+            'sessionTable' => 'frontend_session'
         ],
         'request' => [
             'cookieValidationKey' => 'sdNsa23Ms',
@@ -68,7 +68,7 @@ return [
         ],
 
         'user' => [
-            'identityClass' => 'backend\modules\admin\models\AdminUsers',
+            'identityClass' => 'common\modules\user\models\User',
             'enableAutoLogin' => true,
             'loginUrl' => 'admin/default/login.html'
         ],

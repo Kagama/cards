@@ -10,11 +10,11 @@ namespace backend\modules\organization\controllers;
 
 use common\modules\organization\models\Category;
 use common\modules\organization\models\CatSearch;
+use common\modules\user\models\User;
 use yii\web\NotFoundHttpException;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
-use backend\modules\admin\models\AdminUsers;
 use Yii;
 
 class CategoryController extends Controller
@@ -38,9 +38,9 @@ class CategoryController extends Controller
                         'actions' => ['index', 'view', 'create', 'update', 'delete'],
 //                        'roles' => ['@']
                         'matchCallback' => function ($rule, $action) {
-                            $model = AdminUsers::findIdentity(Yii::$app->user->getId());
+                            $model = User::findIdentity(Yii::$app->user->getId());
                             if (!empty($model)) {
-                                return $model->getRoleId() == 1; // Администратор
+                                return $model->role->id == 1; // Администратор
                             }
                             return false;
                         }
