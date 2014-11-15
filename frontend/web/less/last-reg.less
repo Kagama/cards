@@ -1,0 +1,165 @@
+/*
+============================================================================================
+Последние зарегистрированные
+============================================================================================
+*/
+.last-reg
+{
+    width: 100%;
+    padding: 45px 0;
+
+    text-align: center;
+
+    background: @gray;
+    .item,
+    .title
+    {
+        text-align: left;
+        a
+        {
+            font-size: 14px;
+
+            text-decoration: none;
+
+            color: @blue;
+            &:hover
+            {
+                text-decoration: underline;
+            }
+        }
+    }
+    h1
+    {
+        font-size: 36px;
+        font-weight: 100;
+
+        margin: 0 0 20px 0;
+
+        text-transform: uppercase;
+
+        color: #fff;
+        @media screen and (max-width: 960px)
+        {
+            font-size: 24px;
+        }
+    }
+    .image
+    {
+        position: relative;
+
+        width: 100%;
+        height: 190px;
+        height: 190px;
+
+        text-align: center;
+
+        cursor: pointer;
+
+        background: #fff;
+        @media screen and (max-width: 960px)
+        {
+            img
+            {
+                width: 80%;
+            }
+        }
+        @media screen and (max-width: 768px)
+        {
+            img
+            {
+                height: 100%;
+            }
+        }
+
+        &::before
+        {
+            line-height: 190px;
+
+            position: absolute;
+            top: 0;
+            left: 0;
+
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+
+            content: '';
+            text-align: center;
+            text-transform: uppercase;
+
+            color: transparent;
+
+            opacity: .7;
+
+            backround: transparent;
+            .transition(all .2s ease);
+        }
+
+        &:hover
+        {
+            &::before
+            {
+                background: @blue;
+            }
+
+            span {
+                top: 45%;
+                opacity: 1;
+            }
+        }
+
+        span {
+            display: block;
+            position: absolute;
+            top: 20%;
+            opacity: 0;
+            color: #fff;
+            font-size: 24px;
+            text-transform: uppercase;
+            text-align: center;
+            width: 100%;
+            .transition(all .3s ease);
+        }
+    }
+    h2
+    {
+        font-weight: 100;
+
+        margin: 15px 0;
+
+        text-align: left;
+        text-transform: uppercase;
+
+        color: @blue;
+    }
+    p
+    {
+        font-size: 14px;
+        font-weight: 100;
+        line-height: 1.6;
+
+        color: #fff;
+    }
+    .button
+    {
+        font-size: 20px;
+
+        display: inline-block;
+
+        margin: 20px 0 0 0;
+        padding: 15px 45px;
+
+        text-decoration: none;
+        text-transform: uppercase;
+
+        color: #fff;
+        background: @blue;
+
+        .transition(background .2s ease);
+        &:hover
+        {
+            background: darken(@blue,10%);
+        }
+    }
+}

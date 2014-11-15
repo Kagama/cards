@@ -1,0 +1,139 @@
+/*
+============================================================================================
+Основные стили
+============================================================================================
+*/
+body,
+html
+{
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+
+    .avante;
+}
+
+p
+{
+    margin: 0;
+}
+
+.container {
+    position: relative;
+}
+
+* {
+    outline: none;
+}
+
+section
+{
+    padding: 35px 0px;
+    position: relative;
+
+    h1 {
+        color: @gray;
+        text-transform: uppercase;
+        font-size: 35px;
+        font-weight: 100;
+        margin-left: 10px;
+    }
+}
+/*
+=======================
+Типы на главной
+=======================
+*/
+.type
+{
+    .item
+    {
+        text-align: center;
+        position: relative;
+        top: 0px;
+
+        @media screen and (max-width: 960px) {
+            border: 1px solid @blue;
+
+            margin-top: 4px;
+        }
+        h2
+        {
+            font-size: 30px;
+            font-weight: 100;
+
+            padding: 20px;
+
+            text-transform: uppercase;
+
+            border-bottom: 10px solid @blue;
+        }
+        img
+        {
+            display: inline-block;
+
+            margin: 15px 0;
+        }
+        p
+        {
+            font-size: 14px;
+            line-height: 24px;
+        }
+        .button
+        {
+            font-size: 12px;
+
+            display: block;
+
+            width: 100%;
+            margin-top: 15px;
+            padding: 15px 0;
+
+            text-decoration: none;
+            text-transform: uppercase;
+
+            color: #fff;
+            background: @blue;
+
+            .transition(background .2s ease);
+            &:hover
+            {
+                background: @gray;
+            }
+        }
+    }
+}
+/*
+=======================
+Почему мы лучшие
+=======================
+*/
+.why-we
+{
+    h1
+    {
+        font-size: 36px;
+        font-weight: 100;
+
+        text-transform: uppercase;
+        @media screen and (max-width: 960px) {
+            font-size: 24px;
+        }
+    }
+    p
+    {
+        font-size: 16px;
+        font-weight: 100;
+        line-height: 1.6;
+    }
+}
+
+/*
+*/
+
+.map-all {
+    width: 100%;
+    height: 400px;
+    background: red;
+}

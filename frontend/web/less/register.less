@@ -1,0 +1,55 @@
+/*
+============================================================================================
+Регистрация новой компании
+============================================================================================
+*/
+.register
+{
+    h1
+    {
+        font-size: 36px;
+        font-weight: 100;
+
+        text-transform: uppercase;
+    }
+    .item
+    {
+        margin-bottom: 15px;
+    }
+    label
+    {
+        font-size: 16px;
+        margin: 10px 0px;
+
+        display: block;
+        &::after
+        {
+            position: relative;
+            top: -2px;
+
+            content: '*';
+
+            color: @blue;
+        }
+    }
+    input,
+    textarea
+    {
+        box-sizing: border-box;
+        width: 100%;
+        padding: 12px 20px;
+        font-size: 1em;
+
+        border: 8px solid @gray_l;
+        outline: none;
+
+        .transition(all .3s ease);
+        .avante;
+        &:active,
+        &:focus,
+        &:hover
+        {
+            border: 8px solid @blue;
+        }
+    }
+}

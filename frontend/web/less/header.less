@@ -1,0 +1,77 @@
+/*
+============================================================================================
+Header
+============================================================================================
+*/
+header
+{
+    width: 100%;
+    padding: 15px 0px;
+
+    background: @gray;
+
+    @media screen and (max-width: 960px) {
+        text-align: center;
+    }
+
+    .avante;
+    .title
+    {
+        position: relative;
+        top: 0px;
+        font-size: 30px;
+        font-weight: bold;
+		
+        color: #fff;
+
+        @media screen and (max-width: 960px) {
+            width: 100%;
+        }
+    }
+    nav
+    {
+    	text-align: right;
+    	.fatum;
+
+        @media screen and (max-width: 768px) {
+            width: 100%;
+            text-align: center;
+            border-top: 1px solid @gray_l;
+
+            li {
+                disaply: block;
+            }
+        }
+
+        ul
+        {
+            margin: 0;
+            padding: 0;
+
+            list-style: none;
+            li
+            {
+                position: relative;
+                right: 0px;
+                display: inline-block;
+                padding: 10px;
+                a,
+                a:visited,
+                a:active
+                {
+                    text-decoration: none;
+                    text-transform: uppercase;
+
+                    font-size: 14px;
+
+                    color: #fff;
+	                .transition(color .2s ease);
+
+	                &:hover {
+	                	color: @blue;	                	
+	                }
+                }
+            }
+        }
+    }
+}
