@@ -77,6 +77,24 @@ class CategoryController extends Controller
             $file = UploadedFile::getInstance($model, 'img');
             if (!empty($file))
                 $model->img = $file;
+            
+            if ($file instanceof UploadedFile) {
+                $model->img = $file;
+
+                if (($model->img instanceof UploadedFile ) && $model->img->size > 0) {
+
+                    $path = "images/organization/category";
+
+                    CDirectory::createDir($path);
+                    $dir = \Yii::$app->basePath . "/../" . $path;
+
+                    $imageName = CString::translitTo($model->alt_name). "." . $model->img->getExtension();
+
+                    $model->img->saveAs($dir . "/" . $imageName);
+
+                    $model->img = $path . "/" . $imageName;
+                }
+            }
 
             if ($model->save()) {
 
