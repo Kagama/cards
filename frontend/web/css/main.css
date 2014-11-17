@@ -890,12 +890,12 @@ section.slider .slide-arrow.right {
     padding-bottom: 64px;
     border-bottom: 8px solid #0094cb;
 }
-.pager {
+.pagination {
     text-align: center;
     width: 100%;
     padding: 0px;
 }
-.pager .pg {
+.pagination .pg, .pagination li  {
     display: inline-block;
     width: 40px;
     height: 40px;
@@ -912,34 +912,42 @@ section.slider .slide-arrow.right {
     transition: all 0.2s ease;
 }
 @media screen and (max-width: 480px) {
-    .pager .pg {
+    .pagination .pg, .pagination li {
         height: 24px;
         width: 24px;
         font-size: 12px;
         line-height: 24px;
     }
 }
-.pager .pg:hover {
+.pagination .pg:hover, .pagination li:hover {
     border: 2px solid #0094cb;
 }
-.pager .pg.active {
+.pagination .pg.active , .pagination li.active {
     border: 2px solid #0094cb;
 }
-.pager .prev,
-.pager .next {
+.pagination .prev,
+.pagination .next {
     margin-left: 20px;
     margin-right: 20px;
     font-size: 12px;
 }
 @media screen and (max-width: 480px) {
-    .pager .prev,
-    .pager .next {
+    .pagination .prev,
+    .pagination .next {
         margin-left: 2px;
         margin-right: 2px;
     }
 }
+.pagination li a {
+    text-decoration: none;
+    color: inherit;
+}
 
 /*####################################################################################################################*/
-/*#################################### Рашид Комментарии #############################################################*/
+/*#################################### Рашид #########################################################################*/
+
+.pagination {
+
+}
 
 /*####################################################################################################################*/

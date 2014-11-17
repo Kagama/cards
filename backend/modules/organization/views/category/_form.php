@@ -18,9 +18,17 @@ use common\modules\organization\models\Category;
             'options' => [
                 'novalidate' => "novalidate",
                 'method' => "post",
-                'data-validate' => "parsley"
+                'data-validate' => "parsley",
+                'enctype' => 'multipart/form-data'
             ]
         ]); ?>
+
+        <?php
+        if ($model->img != "") {
+            echo Html::img("/".$model->img);
+        }
+        echo $form->field($model, 'img')->fileInput();
+        ?>
 
         <?= $form->field($model, 'name')->textInput(); ?>
 
