@@ -8,6 +8,8 @@
 
 namespace backend\modules\organization\controllers;
 
+use common\helpers\CDirectory;
+use common\helpers\CString;
 use common\modules\organization\models\Category;
 use common\modules\organization\models\CatSearch;
 use common\modules\user\models\User;
@@ -16,6 +18,7 @@ use yii\web\Controller;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 use Yii;
+use yii\web\UploadedFile;
 
 class CategoryController extends Controller
 {
@@ -70,14 +73,20 @@ class CategoryController extends Controller
     public function actionCreate()
     {
         $model = new Category();
-        if ($model->load(\Yii::$app->request->post()))
-            if ($model->validate()) {
-                if ($model->save()) {
-                    return $this->redirect(['view', 'id' => $model->id]);
-                }
+        if ($model->load(\Yii::$app->request->post())) {
+            $file = UploadedFile::getInstance($model, 'img');
+            if (!empty($file))
+                $model->img = $file;
+
+            if ($model->save()) {
+
+                return $this->redirect(['view', 'id' => $model->id]);
             }
+        }
+
         return $this->render('create', ['model' => $model]);
     }
+
     /**
      * Updates an existing Category model.
      * If update is successful, the browser will be redirected to the 'view' page.
@@ -88,8 +97,36 @@ class CategoryController extends Controller
     {
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if ($model->load(Yii::$app->request->post())) {
+
+            $file = UploadedFile::getInstance($model, 'img');
+//            var_dump($file);
+//            die();
+            if ($file instanceof UploadedFile) {
+                $model->img = $file;
+
+                if (($model->img instanceof UploadedFile ) && $model->img->size > 0) {
+
+                    $path = "images/organization/category";
+
+                    CDirectory::createDir($path);
+                    $dir = \Yii::$app->basePath . "/../" . $path;
+
+                    $imageName = CString::translitTo($model->alt_name). "." . $model->img->getExtension();
+
+                    $model->img->saveAs($dir . "/" . $imageName);
+
+                    $model->img = $path . "/" . $imageName;
+                }
+            } else {
+                $model->img = $model->getOldAttribute('img');
+            }
+
+            if ($model->save()) {
+
+                return $this->redirect(['view', 'id' => $model->id]);
+            }
+
         } else {
             return $this->render('update', [
                 'model' => $model,

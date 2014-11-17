@@ -7,18 +7,23 @@
  */
 namespace common\modules\organization\models;
 
+use common\helpers\CDirectory;
 use yii\db\ActiveRecord;
 use common\helpers\CString;
+use yii\web\UploadedFile;
+
 /*
  * @protected integer $id
  * @protected string $name
  * @protected string $alt_name
+ * @property string $img
  * @protected string $seo_title
  * @protected string $seo_keywords
  * @protected string $seo_description
  * @protected string $text_before
  * @protected string $text_after
  */
+
 class Category extends ActiveRecord
 {
     /**
@@ -37,7 +42,9 @@ class Category extends ActiveRecord
         return [
             [['name', 'alt_name', 'seo_title', 'seo_keywords', 'seo_description'], 'required'],
             [['seo_description'], 'string'],
-            [['name', 'alt_name', 'seo_title', 'seo_keywords', 'text_before', 'text_after'], 'string', 'max' => 254]
+            [['name', 'alt_name', 'seo_title', 'seo_keywords', 'text_before', 'text_after'], 'string', 'max' => 254],
+            [['img'], 'string', 'max' => 512],
+            [['img'], 'file', 'extensions' => 'jpg, jpeg, gif, png', 'skipOnEmpty' => true]
         ];
     }
 
@@ -51,6 +58,7 @@ class Category extends ActiveRecord
             'name' => 'Название',
             'alt_name' => 'Альтернативное название',
             'text_before' => 'Текст до',
+            'img' => 'Картинка',
             'text_after' => 'Текст после',
             'seo_title' => 'Seo Title',
             'seo_keywords' => 'Seo Keywords',
@@ -58,7 +66,8 @@ class Category extends ActiveRecord
         ];
     }
 
-    public function beforeValidate() {
+    public function beforeValidate()
+    {
         if (parent::beforeValidate()) {
 
             $this->alt_name = CString::translitTo($this->name);
@@ -66,5 +75,14 @@ class Category extends ActiveRecord
             return true;
         }
         return false;
+    }
+    public function beforeSave($insert)
+    {
+        if (parent::beforeSave($insert)) {
+
+            return true;
+        } else {
+            return false;
+        }
     }
 }

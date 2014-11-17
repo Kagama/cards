@@ -43,43 +43,22 @@
 
 <section class="type">
     <div class="container">
-
-        <div class="item four columns">
-            <h2>Название</h2>
-            <img src="img/main_icon_wash.png" alt="">
-            <p>
-                Cubilipende sollicitudineied leo pharea aumennec in velit veaugun eraam lor innia est. Proin dictum elem velit Fterdpibus sceleue vitaepe.
-            </p>
-            <a href="" class="button">Посмотреть организации</a>
-        </div>
-
-        <div class="item four columns">
-            <h2>Название</h2>
-            <img src="img/main_icon_tire.png" alt="">
-            <p>
-                Cubilipende sollicitudineied leo pharea aumennec in velit veaugun eraam lor innia est. Proin dictum elem velit Fterdpibus sceleue vitaepe.
-            </p>
-            <a href="" class="button">Посмотреть организации</a>
-        </div>
-
-        <div class="item four columns">
-            <h2>Название</h2>
-            <img src="img/main_icon_rus.png" alt="">
-            <p>
-                Cubilipende sollicitudineied leo pharea aumennec in velit veaugun eraam lor innia est. Proin dictum elem velit Fterdpibus sceleue vitaepe.
-            </p>
-            <a href="" class="button">Посмотреть организации</a>
-        </div>
-
-        <div class="item four columns">
-            <h2>Название</h2>
-            <img src="img/main_icon_repair.png" alt="">
-            <p>
-                Cubilipende sollicitudineied leo pharea aumennec in velit veaugun eraam lor innia est. Proin dictum elem velit Fterdpibus sceleue vitaepe.
-            </p>
-            <a href="" class="button">Посмотреть организации</a>
-        </div>
-
+        <?php
+        $menuOrg = \common\modules\menu\models\Menu::find()->where(['module_id' => 7])->one();
+        $categories = \common\modules\organization\models\Category::find()->all();
+        foreach ($categories as $_cat) {
+        ?>
+            <div class="item four columns">
+                <h2><?=$_cat->name?></h2>
+                <img src="<?="/".$_cat->img?>" alt="<?=$_cat->name?>">
+                <p>
+                    <?=$_cat->text_before?>
+                </p>
+                <?=\yii\helpers\Html::a("Посмотреть организации", ['/'.$menuOrg->url.'/'.$_cat->alt_name], ['class' => 'button']) ?>
+            </div>
+        <?php
+        }
+        ?>
     </div>
 </section>
 
@@ -90,49 +69,29 @@
 <section class="last-reg">
     <div class="container">
         <div class="title"><h1>Последние зарегистрированные организации</h1></div>
-        <div class="item one-third column">
-            <div class="image">
-                <a href="">
-                    <img src="img/main-reg-marussia.png" alt="">
-                    <span>Подробнее</span>
-                </a>
-            </div>
-            <h2>Название</h2>
-            <a href="">Категория</a>
-            <p>
-                российская автомобильная компания, производившая спортивные автомобили под маркой Marussia. Основана в 2007 году российским актером, шоуменом и автогонщиком Николаем Фоменко совместно с предпринимателем Ефимом Островским.
-            </p>
-        </div>
+        <?php
 
-        <div class="item one-third column">
-            <div class="image">
-                <a href="">
-                    <img src="img/main-reg-amg.png" alt="">
-                    <span>Подробнее</span>
-                </a>
+        $organizations = \common\modules\organization\models\Organization::find()->orderBy(' created_at DESC ')->limit(3)->all();
+        foreach ($organizations as $org) {
+            ?>
+            <div class="item one-third column">
+                <div class="image">
+                    <a href="<?=\yii\helpers\Url::to(['/'.$menuOrg->url."/".$org->id."/".\common\helpers\CString::translitTo($org->name)])?>">
+                        <img src="img/main-reg-marussia.png" alt="">
+                        <span>Подробнее</span>
+                    </a>
+                </div>
+                <h2><?=$org->name?></h2>
+                <a href="<?=\yii\helpers\Url::to(['/'.$menuOrg->url.'/'.$org->cat->alt_name]);?>"><?=$org->cat->name;?></a>
+                <p>
+                    <?=\common\helpers\CString::subStr($org->description, 0, 300);?>
+                </p>
             </div>
-            <h2>Название</h2>
-            <a href="">Категория</a>
-            <p>
-                российская автомобильная компания, производившая спортивные автомобили под маркой Marussia. Основана в 2007 году российским актером, шоуменом и автогонщиком Николаем Фоменко совместно с предпринимателем Ефимом Островским.
-            </p>
-        </div>
+        <?php
+        }
+        ?>
 
-        <div class="item one-third column">
-            <div class="image">
-                <a href="">
-                    <img src="img/main-reg-western.png" alt="">
-                    <span>Подробнее</span>
-                </a>
-            </div>
-            <h2>Название</h2>
-            <a href="">Категория</a>
-            <p>
-                российская автомобильная компания, производившая спортивные автомобили под маркой Marussia. Основана в 2007 году российским актером, шоуменом и автогонщиком Николаем Фоменко совместно с предпринимателем Ефимом Островским.
-            </p>
-        </div>
-
-        <a href="" class="button">Все организации</a>
+        <a href="<?=\yii\helpers\Url::to(['/'.$menuOrg->url])?>" class="button">Все организации</a>
     </div>
 </section>
 

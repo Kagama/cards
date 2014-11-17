@@ -26,9 +26,9 @@ return [
             'class' => 'frontend\modules\main\MainModule',
         ],
 
-        'faq' => [
-            'class' => 'frontend\modules\faq\FaqModule'
-        ],
+//        'faq' => [
+//            'class' => 'frontend\modules\faq\FaqModule'
+//        ],
         'redactor' =>  'sim2github\imperavi\Module',
         'organization' => [
             'class' => 'frontend\modules\organization\OrganizationModule',
@@ -74,9 +74,9 @@ return [
 //                '<module:(news|article)>/all' => '<module>/default/all',
 //                '<module:(news|article)>/<id_alt_title:\w+>' => '<module>/default/show',
 
-                '<module:\w+>/<controller:\w+>/<action:\w+>/<id:\d+>'=>'<module>/<controller>/<action>',
-                '<module:\w+>/<controller:\w+>/<action:\w+>'=>'<module>/<controller>/<action>',
-                '<module:\w+>/<action:\w+>'=>'<module>/default/<action>',
+//                '<module:\w+>/<controller:\w+>/<action:\w+>/<id:\d+>'=>'<module>/<controller>/<action>',
+//                '<module:\w+>/<controller:\w+>/<action:\w+>'=>'<module>/<controller>/<action>',
+//                '<module:\w+>/<action:\w+>'=>'<module>/default/<action>',
             ]
         ],
         'user' => [

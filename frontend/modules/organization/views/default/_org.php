@@ -11,19 +11,14 @@ use yii\helpers\Url;
 $this->params['breadcrumbs'] = [
     ['label' => 'Организации', 'url' => null],
 ]; ?>
-    <div class="organization-item">
-        <div class="row">
-            <div class="col-lg-2">
-
-            </div>
-            <div class="col-lg-10">
-                <?= '<h3 class="title">'.$model->cat->name. " " . $model->name.'</h3>'?>
-
-                <div class="description">
-                    <?= $model->description; ?>
-                </div>
-                <p class="contact-info"><span>Адрес:</span> <?= $model->address ?></p>
-                <p class="contact-info"><span>Тел:</span> <?= $model->phone ?></p>
-            </div>
-        </div>
+<div class="item one-third column">
+    <div class="image">
+        <a href="<?=\yii\helpers\Url::to(['/'.$menu->url."/".$model->id."/".\common\helpers\CString::translitTo($model->name)])?>">
+            <img src="img/main-reg-marussia.png" alt="">
+            <span>Подробнее</span>
+        </a>
     </div>
+    <h2><?=$model->name?></h2>
+    <a href="<?=\yii\helpers\Url::to(['/'.$menu->url.'/'.$model->cat->alt_name]);?>"><?=$model->cat->name;?></a>
+    <p><?=\common\helpers\CString::subStr($model->description, 0, 300);?></p>
+</div>
