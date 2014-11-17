@@ -17,9 +17,7 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'content', [
         'template' => "
                 {label}
-                <div style='color:#000;'>
-                {input}
-                </div>
+                <div class='textarea-content'>{input}</div>
                 {error}
             "
     ])->widget(sim2github\imperavi\widgets\Redactor::className(), [

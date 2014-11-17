@@ -126,3 +126,21 @@ select {
 .redactor_box p {
     color: #535353;
 }
+.textarea-content {
+    color: #000;
+}
+
+.textarea-content h1,
+.textarea-content h2,
+.textarea-content h3,
+.textarea-content h4 {
+    color: #000;
+}
+
+.textarea-content ul {
+    list-style: inherit;
+}
+
+.textarea-content ol {
+    list-style: decimal;
+}

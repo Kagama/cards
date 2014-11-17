@@ -35,7 +35,7 @@ use common\modules\organization\models\Category;
         <?= $form->field($model, 'text_before', [
             'template' => '
                 {label}
-                <div style="color:#000">{input}</div>
+                <div class="textarea-content">{input}</div>
                 {error}
             '
         ])->widget(sim2github\imperavi\widgets\Redactor::className(), [
@@ -64,7 +64,7 @@ use common\modules\organization\models\Category;
         <?= $form->field($model, 'text_after',[
             'template' => '
                 {label}
-                <div style="color:#000">{input}</div>
+                <div class="textarea-content">{input}</div>
                 {error}
             '
         ])->widget(sim2github\imperavi\widgets\Redactor::className(), [
