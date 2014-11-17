@@ -9,9 +9,11 @@ namespace frontend\modules\organization\controllers;
 
 use common\modules\menu\models\Menu;
 use common\modules\organization\models\Category;
+use common\modules\organization\models\Organization;
 use common\modules\organization\models\OrgSearch;
 use yii\web\Controller;
 use Yii;
+use yii\web\NotFoundHttpException;
 
 class DefaultController extends Controller
 {
@@ -43,6 +45,20 @@ class DefaultController extends Controller
             'category' => $category,
             'menu' => $menu,
             'dataProvider' => $dataProvider,
+        ]);
+    }
+
+    public function actionShow($menu_url, $id, $alt_name)
+    {
+        $menu = Menu::find()->where(['url' => $menu_url])->one();
+
+        $model = Organization::findOne((int) $id);
+        if (empty($model))
+            throw new NotFoundHttpException('Страница не найдена.');
+
+        return $this->render('show', [
+            'model' => $model,
+            'menu' => $menu
         ]);
     }
 }

@@ -104,10 +104,20 @@ Yii::$app->view->registerJs("
             'options' => [
                 'novalidate' => "novalidate",
                 'method' => "post",
-                'data-validate' => "parsley"
+                'data-validate' => "parsley",
+                'enctype' => 'multipart/form-data'
             ]
         ]); ?>
         <?= $form->errorSummary($model) ?>
+
+        <?php
+        if ($model->img != "") {
+
+            echo Html::img("/".$model->doCache('300x190', 'width', '300x190'));
+        }
+        ?>
+        <?= $form->field($model, 'img')->fileInput()?>
+
         <?= $form->field($model, 'name')->textInput(); ?>
 
         <?= $form->field($model, 'category')->dropDownList(ArrayHelper::map(Category::find()->all(), 'id', 'name'), ['prompt' => '---']) ?>

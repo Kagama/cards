@@ -14,7 +14,7 @@ $this->params['breadcrumbs'] = [
 <div class="item one-third column">
     <div class="image">
         <a href="<?=\yii\helpers\Url::to(['/'.$menu->url."/".$model->id."/".\common\helpers\CString::translitTo($model->name)])?>">
-            <img src="img/main-reg-marussia.png" alt="">
+            <img src="<?= "/".$model->doCache('300x190', 'width', '300x190')?>" alt="">
             <span>Подробнее</span>
         </a>
     </div>

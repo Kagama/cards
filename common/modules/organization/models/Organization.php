@@ -8,8 +8,11 @@
 
 namespace common\modules\organization\models;
 
+use common\helpers\CDirectory;
+use common\helpers\CString;
 use yii\db\ActiveRecord;
 use Yii;
+use yii\web\UploadedFile;
 
 /**
  * This is the model class for table "t_kg_organization".
@@ -17,6 +20,8 @@ use Yii;
  *
  * @property integer $id
  * @property string $name
+ * @property string $img
+ * @property steing $img_src
  * @property integer $created_at
  * @property integer $updated_at
  * @property string $phone
@@ -55,7 +60,8 @@ class Organization extends ActiveRecord
             [['phone'], 'string', 'max' => 256],
             [['city', 'category'], 'integer'],
             [['seo_description'], 'string'],
-            [['seo_title', 'seo_keywords'], 'string', 'max' => 512]
+            [['seo_title', 'seo_keywords', 'img_src'], 'string', 'max' => 512],
+            [['img'], 'image', 'extensions' => 'jpg, png, jpeg, gif']
         ];
     }
 
@@ -66,6 +72,8 @@ class Organization extends ActiveRecord
     {
         return [
             'id' => 'ID',
+            'img' => 'Лого',
+            'img_src' => 'Путь к картинке',
             'city' => 'Город',
             'name' => 'Название организации',
             'created_at' => 'Дата создания',
@@ -93,6 +101,11 @@ class Organization extends ActiveRecord
                     ActiveRecord::EVENT_BEFORE_UPDATE => ['updated_at'],
                 ],
             ],
+            'cachedImg' => [
+                'class' => 'common\behaviors\CachedImageResolution',
+                'attr_src' => 'img_src',
+                'attr_img_name' => 'img',
+            ]
         ];
     }
 
@@ -101,6 +114,34 @@ class Organization extends ActiveRecord
      */
     public function afterSave($insert, $attributes)
     {
+        $file = UploadedFile::getInstance($this, 'img');
+
+        if ($file instanceof UploadedFile) {
+            $this->img = $file;
+
+            if (($this->img instanceof UploadedFile ) && $this->img->size > 0) {
+
+                $path = "images/organization/".date("Y/m/d", $this->created_at)."/".$this->getPrimaryKey();
+
+                CDirectory::createDir($path);
+                $dir = \Yii::$app->basePath . "/../" . $path;
+
+                $imageName = CString::translitTo($this->name). "." . $this->img->getExtension();
+
+                $this->img->saveAs($dir . "/" . $imageName);
+
+                $model = static::findOne($this->getPrimaryKey());
+//                $model->img = $imageName;
+//                $model->img_src = $path;
+//                $model->update();
+//                $model->update(false, ['img' => $imageName, 'img_src' => $path]);
+                static::updateAll(['img' => $imageName, 'img_src' => $path], ['id' => $this->getPrimaryKey()]);
+            }
+        } else {
+            $this->img = $this->getOldAttribute('img');
+            $this->img_src = $this->getOldAttribute('img_src');
+        }
+
         parent::afterSave($insert, $attributes);
     }
 
@@ -113,4 +154,5 @@ class Organization extends ActiveRecord
     {
         return $this->hasOne(City::className(), ['id' => 'city']);
     }
+
 }

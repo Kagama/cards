@@ -77,7 +77,7 @@
             <div class="item one-third column">
                 <div class="image">
                     <a href="<?=\yii\helpers\Url::to(['/'.$menuOrg->url."/".$org->id."/".\common\helpers\CString::translitTo($org->name)])?>">
-                        <img src="img/main-reg-marussia.png" alt="">
+                        <img src="<?= "/".$org->img_src."/".$org->img?>" alt="">
                         <span>Подробнее</span>
                     </a>
                 </div>
