@@ -72,7 +72,7 @@ AppAsset::register($this);
                     <a class="i tw"></a>
                     <a class="i ok"></a>
                 </div>
-                <span class="cred">КЛУБ ЧИСТЫХ АВТО © 2014 • RAGAMA</span>
+                <span class="cred">КЛУБ ЧИСТЫХ АВТО © 2014 • <a href="http://kagama.ru">KAGAMA</a></span>
             </div>
         </div>
     </div>

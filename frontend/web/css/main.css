@@ -719,6 +719,10 @@ section.slider .slide-arrow.right {
 .map-footer .info .cred {
     font-size: 14px;
 }
+.map-footer .info .cred a {
+    text-decoration: none;
+    color: inherit;
+}
 .map-footer #fmap {
     position: absolute;
     width: 100%;

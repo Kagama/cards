@@ -80,6 +80,28 @@ class Category extends ActiveRecord
     {
         if (parent::beforeSave($insert)) {
 
+            $file = UploadedFile::getInstance($this, 'img');
+
+            if ($file instanceof UploadedFile) {
+                $this->img = $file;
+
+                if (($this->img instanceof UploadedFile ) && $this->img->size > 0) {
+
+                    $path = "images/organization/category";
+
+                    CDirectory::createDir($path);
+                    $dir = \Yii::$app->basePath . "/../" . $path;
+
+                    $imageName = CString::translitTo($this->alt_name). "." . $this->img->getExtension();
+
+                    $this->img->saveAs($dir . "/" . $imageName);
+
+                    $this->img = $path . "/" . $imageName;
+                }
+            } else {
+                $this->img = $this->getOldAttribute('img');
+            }
+
             return true;
         } else {
             return false;

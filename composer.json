@@ -24,7 +24,7 @@
         "yurkinx/yii2-image": "dev-master",
 		"yiisoft/yii2-jui": "*",
         "kartik-v/yii2-widgets": "*",
-		"sim2github/yii2-imperavi-module": "dev-master"
+        "sim2github/yii2-imperavi-module": "dev-master"
 	},
 	"require-dev": {
 	},
