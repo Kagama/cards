@@ -1,8 +1,19 @@
+<?php
+
+
+use yii\web\View;
+Yii::$app->view->registerJs("
+    function setCoast(_this) {
+        $('#payment').val((parseInt($(_this).val())+1) * 100);
+    }
+", View::POS_END);
+
+
+?>
 
 <!-- Slider -->
 
 <section class="slider">
-
 
 
     <div class="slideinfo">
@@ -32,9 +43,9 @@
 <section class="why-we">
     <div class="container">
         <div class="sixteen collumns">
-            <?=\common\modules\contentBlock\widget\ContentBlockWidget::widget([
+            <?= \common\modules\contentBlock\widget\ContentBlockWidget::widget([
                 'id' => 1
-            ]);?>
+            ]); ?>
         </div>
     </div>
 </section>
@@ -47,21 +58,21 @@
         $menuOrg = \common\modules\menu\models\Menu::find()->where(['module_id' => 7])->one();
         $categories = \common\modules\organization\models\Category::find()->all();
         foreach ($categories as $_cat) {
-        ?>
+            ?>
             <div class="item four columns">
-                <h2><?=$_cat->name?></h2>
-                <img src="<?="/".$_cat->img?>" alt="<?=$_cat->name?>">
+                <h2><?= $_cat->name ?></h2>
+                <img src="<?= "/" . $_cat->img ?>" alt="<?= $_cat->name ?>">
+
                 <p>
-                    <?=$_cat->text_before?>
+                    <?= $_cat->text_before ?>
                 </p>
-                <?=\yii\helpers\Html::a("Посмотреть организации", ['/'.$menuOrg->url.'/'.$_cat->alt_name], ['class' => 'button']) ?>
+                <?= \yii\helpers\Html::a("Посмотреть организации", ['/' . $menuOrg->url, 'city' => "", 'category' => $_cat->alt_name], ['class' => 'button']) ?>
             </div>
         <?php
         }
         ?>
     </div>
 </section>
-
 
 
 <!-- Последние зарегистрированные организации -->
@@ -76,22 +87,23 @@
             ?>
             <div class="item one-third column">
                 <div class="image">
-                    <a href="<?=\yii\helpers\Url::to(['/'.$menuOrg->url."/".$org->id."/".\common\helpers\CString::translitTo($org->name)])?>">
-                        <img src="<?= "/".$org->img_src."/".$org->img?>" alt="">
+                    <a href="<?= \yii\helpers\Url::to(['/' . $menuOrg->url . "/" . $org->id . "/" . \common\helpers\CString::translitTo($org->name)]) ?>">
+                        <img src="<?= "/" . $org->img_src . "/" . $org->img ?>" alt="">
                         <span>Подробнее</span>
                     </a>
                 </div>
-                <h2><?=$org->name?></h2>
-                <a href="<?=\yii\helpers\Url::to(['/'.$menuOrg->url.'/'.$org->cat->alt_name]);?>"><?=$org->cat->name;?></a>
+                <h2><?= $org->name ?></h2>
+                <a href="<?= \yii\helpers\Url::to(['/' . $menuOrg->url . '/' . $org->cat->alt_name]); ?>"><?= $org->cat->name; ?></a>
+
                 <p>
-                    <?=\common\helpers\CString::subStr($org->description, 0, 300);?>
+                    <?= \common\helpers\CString::subStr($org->description, 0, 300); ?>
                 </p>
             </div>
         <?php
         }
         ?>
 
-        <a href="<?=\yii\helpers\Url::to(['/'.$menuOrg->url])?>" class="button">Все организации</a>
+        <a href="<?= \yii\helpers\Url::to(['/' . $menuOrg->url]) ?>" class="button">Все организации</a>
     </div>
 </section>
 
@@ -101,54 +113,120 @@
 
 
     <div class="container">
-        <h1>Регистрация</h1>
+        <h1>Активация карты</h1>
 
-        <form action="">
-            <div class="item one-third column">
-                <label for="">Название</label>
-                <input type="text" val="">
-            </div>
+        <?php $form = \yii\widgets\ActiveForm::begin([
+//            'enableClientValidation' => false,
+//            'enableAjaxValidation' => false,
+        ])?>
+        <?= $form->field($regForm, 'card_number', [
+            'template' => '
+                    <div class="item one-thirds column">
+                    {label}
+                    {input}
+                    {error}
+                    </div>'
 
-            <div class="item one-third column">
-                <label for="">E-Mail</label>
-                <input type="text" val="">
-            </div>
+        ])->widget(\yii\widgets\MaskedInput::className(), [
+            'mask' => '999999'
+        ])->textInput(['placeholder' => '9999']); ?>
 
-            <div class="item one-third column">
-                <label for="">Адрес сайта</label>
-                <input type="text" val="">
-            </div>
+        <?= $form->field($regForm, 'car_number', [
+            'template' => '
+                    <div class="item one-thirds column">
+                    {label}
+                    {input}
+                    {error}
+                    </div>'
 
-            <div class="item one-third column">
-                <label for="">Телефоны</label>
-                <input type="text" val="">
-            </div>
+        ])->widget(\yii\widgets\MaskedInput::className(), [
+            'mask' => 'a 999 aa 999'
+        ])->textInput(['placeholder' => 'a 999 aa 99[9]']); ?>
 
-            <div class="item one-third column">
-                <label for="">Город</label>
-                <input type="text" val="">
-            </div>
+        <?= $form->field($regForm, 'phone', [
+            'template' => '
+                    <div class="item one-thirds column">
+                    {label}
+                    {input}
+                    {error}
+                    </div>',
 
-            <div class="item one-third column">
-                <label for="">Улица, дом, офис</label>
-                <input type="text" val="">
-            </div>
+        ])->widget(\yii\widgets\MaskedInput::className(), [
+            'mask' => '+7 (999) 999-99-99',
 
-            <div class="item one-third column">
-                <label for="">Город</label>
-                <input type="text">
-            </div>
+        ])->textInput(['placeholder' => '+7 (999) 999-99-99']); ?>
+        <?= $form->field($regForm, 'month', [
+            'template' => '
+                    <div class="item one-third column">
+                    {label}
+                    {input}
+                    {error}
+                    </div>'
 
-            <div class="item two-thirds column">
-                <label for="">Сфера деятельности</label>
-                <input type="text">
-            </div>
+        ])->dropDownList([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], ['onchange' => 'setCoast(this);']); ?>
 
-            <div class="item offset-by-two twelve columns">
-                <label for="">О фирме кратко</label>
-                <textarea name="" id="" cols="30" rows="8"></textarea>
-            </div>
-        </form>
+        <div class="item one-third column">
+            <label for="" class="not-required">К оплате</label>
+            <input type="text" value="100" id="payment" name="payment" style="padding: 9px 15px; width: 100%;" />
+        </div>
+
+        <br style="clear: both" />
+        <div class="item two-thirds column" style="font-size: 18px;">
+            <input type="submit" value="Активировать" name="submit" class="button" style="width: 100%;"/>
+        </div>
+
+        <div class="item two-thirds column">
+
+        </div>
+
+
+        <?php \yii\widgets\ActiveForm::end(); ?>
+        <!--        <form action="">-->
+        <!--            <div class="item one-third column">-->
+        <!--                <label for="">Название</label>-->
+        <!--                <input type="text" val="">-->
+        <!--            </div>-->
+        <!---->
+        <!--            <div class="item one-third column">-->
+        <!--                <label for="">E-Mail</label>-->
+        <!--                <input type="text" val="">-->
+        <!--            </div>-->
+        <!---->
+        <!--            <div class="item one-third column">-->
+        <!--                <label for="">Адрес сайта</label>-->
+        <!--                <input type="text" val="">-->
+        <!--            </div>-->
+        <!---->
+        <!--            <div class="item one-third column">-->
+        <!--                <label for="">Телефоны</label>-->
+        <!--                <input type="text" val="">-->
+        <!--            </div>-->
+        <!---->
+        <!--            <div class="item one-third column">-->
+        <!--                <label for="">Город</label>-->
+        <!--                <input type="text" val="">-->
+        <!--            </div>-->
+        <!---->
+        <!--            <div class="item one-third column">-->
+        <!--                <label for="">Улица, дом, офис</label>-->
+        <!--                <input type="text" val="">-->
+        <!--            </div>-->
+        <!---->
+        <!--            <div class="item one-third column">-->
+        <!--                <label for="">Город</label>-->
+        <!--                <input type="text">-->
+        <!--            </div>-->
+        <!---->
+        <!--            <div class="item two-thirds column">-->
+        <!--                <label for="">Сфера деятельности</label>-->
+        <!--                <input type="text">-->
+        <!--            </div>-->
+        <!---->
+        <!--            <div class="item offset-by-two twelve columns">-->
+        <!--                <label for="">О фирме кратко</label>-->
+        <!--                <textarea name="" id="" cols="30" rows="8"></textarea>-->
+        <!--            </div>-->
+        <!--        </form>-->
     </div>
 </section>
 
@@ -161,7 +239,13 @@
         <div class="title sixteen columns">
             <span>Проверить карту</span></div>
         <div class="eight columns">
-            <input type="text" placeholder="номер карты" id="card_check">
+            <?= \yii\widgets\MaskedInput::widget([
+                'name' => 'car_number',
+                'mask' => 'a 999 aa 999',
+                'id' => 'card_check',
+//                'placeholder' => 'гос. номер авто'
+            ]) ?>
+            <!--            <input type="text" placeholder="номер карты" id="card_check">-->
         </div>
 
         <div class="status eight columns">

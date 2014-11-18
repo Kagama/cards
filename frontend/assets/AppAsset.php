@@ -17,13 +17,15 @@ class AppAsset extends AssetBundle
 {
     public $basePath = '@webroot';
     public $baseUrl = '@web';
+    public $jsOptions = ['position' => \yii\web\View::POS_HEAD];
+
     public $css = [
         'css/libs.css',
         'css/main.css'
     ];
     public $js = [
-        'http://api-maps.yandex.ru/2.1/?lang=ru_RU',
         'js/libs.min.js',
+        'js/fancySelect.js',
         'js/scripts.js'
     ];
     public $depends = [

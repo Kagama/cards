@@ -20,33 +20,44 @@ class DefaultController extends Controller
     public function actionIndex($menu_url)
     {
         $menu = Menu::find()->where(['url' => $menu_url])->one();
+        $category = null;
+        $city_var = Yii::$app->request->get('city', 1);
+        $category_var = Yii::$app->request->get('category');
 
         $searchModel = new OrgSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->getQueryParams());
         $dataProvider->pagination->pageSize = 9;
+
+        $dataProvider->query->andFilterWhere(['city' => $city_var]);
+
+        if ($category_var != null) {
+            $category = Category::find()->where(['alt_name' => $category_var])->one();
+            $dataProvider->query->andFilterWhere(['category' => $category->id]);
+        }
+
         return $this->render('index', [
             'menu' => $menu,
-            'category' => null,
-            'dataProvider' => $dataProvider,
-        ]);
-    }
-
-    public function actionCategory($menu_url, $category_name)
-    {
-        $menu = Menu::find()->where(['url' => $menu_url])->one();
-        $category = Category::find()->where(['alt_name' => $category_name])->one();
-
-        $searchModel = new OrgSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->getQueryParams());
-        $dataProvider->query->andFilterWhere(['category' => $category->id]);
-        $dataProvider->pagination->pageSize = 9;
-
-        return $this->render('index', [
             'category' => $category,
-            'menu' => $menu,
             'dataProvider' => $dataProvider,
         ]);
     }
+
+//    public function actionCategory($menu_url, $category_name)
+//    {
+//        $menu = Menu::find()->where(['url' => $menu_url])->one();
+//        $category = Category::find()->where(['alt_name' => $category_name])->one();
+//
+//        $searchModel = new OrgSearch();
+//        $dataProvider = $searchModel->search(Yii::$app->request->getQueryParams());
+//        $dataProvider->query->andFilterWhere(['category' => $category->id]);
+//        $dataProvider->pagination->pageSize = 9;
+//
+//        return $this->render('index', [
+//            'category' => $category,
+//            'menu' => $menu,
+//            'dataProvider' => $dataProvider,
+//        ]);
+//    }
 
     public function actionShow($menu_url, $id, $alt_name)
     {

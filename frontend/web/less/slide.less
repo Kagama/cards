@@ -11,6 +11,10 @@ section.slider
     padding: 0px;
     background: @gray;
 
+    @media screen and (max-width: 640px) {
+        height: 70%;
+    }
+
     .big {
         position: absolute;
         left: 50%;
@@ -23,6 +27,7 @@ section.slider
         text-transform: uppercase;
         width: 728px;
         text-align: center;
+        text-shadow: 0px 0px 20px rgba(0,0,0,0.4);
 
         @media screen and (max-width: 960px) {
             font-size: 60px;
@@ -53,6 +58,9 @@ section.slider
         cursor: pointer;
 
         .transition(background .2s ease);
+        @media screen and (max-width: 420px) {
+            display: none;
+        }
 
         &:hover {
             background: @blue;
@@ -105,14 +113,14 @@ section.slider
     }    
     @media screen and (max-width: 640px) {
         img {
-            width: 80px;
+            width: 60px;
             margin: 6px;
         }
     }
     @media screen and (max-width: 420px) {
         img {
-            width: 60px;
-            margin: 4px;
+            width: 40px;
+            margin: 5px;
         }
     }
 }
@@ -124,10 +132,6 @@ section.slider
     width: 100%;
     overflow: hidden;
     text-align: center;
-
-    img {
-        max-width: 100%;
-    }
 }
 
 .slide {
@@ -139,10 +143,8 @@ section.slider
     text-align: center;
     overflow: hidden;
 
-    background-size: cover;
-
     &.first {
-        background: url('../img/slide.jpg') no-repeat center;
+        background: url('../img/slide1.jpg') no-repeat center;
         background-size: cover;
     }
 
