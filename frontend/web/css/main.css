@@ -77,7 +77,8 @@ section h1 {
 @media screen and (max-width: 960px) {
     .type .item {
         border: 1px solid #0094cb;
-        margin-top: 4px;
+    margin-top: 16px;
+    box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.3);
     }
 }
 .type .item h2 {
@@ -157,18 +158,21 @@ header {
         text-align: center;
     }
 }
-header .title , header .title a {
+header .title {
     position: relative;
     top: 0px;
     font-size: 30px;
     font-weight: bold;
     color: #fff;
-    text-decoration: none;
 }
 @media screen and (max-width: 960px) {
     header .title {
         width: 100%;
     }
+}
+header .title a {
+    color: #fff;
+    text-decoration: none;
 }
 header nav {
     text-align: right;
@@ -225,6 +229,11 @@ section.slider {
     padding: 0px;
     background: #201f20;
 }
+@media screen and (max-width: 640px) {
+    section.slider {
+        height: 70%;
+    }
+}
 section.slider .big {
     position: absolute;
     left: 50%;
@@ -237,6 +246,7 @@ section.slider .big {
     text-transform: uppercase;
     width: 728px;
     text-align: center;
+  text-shadow: 0px 0px 20px rgba(0, 0, 0, 0.4);
 }
 @media screen and (max-width: 960px) {
     section.slider .big {
@@ -274,6 +284,11 @@ section.slider .slide-arrow {
     -ms-transition: background 0.2s ease;
     -o-transition: background 0.2s ease;
     transition: background 0.2s ease;
+}
+@media screen and (max-width: 420px) {
+    section.slider .slide-arrow {
+        display: none;
+    }
 }
 section.slider .slide-arrow:hover {
     background: #0094cb;
@@ -339,16 +354,12 @@ section.slider .slide-arrow.right {
     overflow: hidden;
     text-align: center;
 }
-.slideshow img {
-    max-width: 100%;
-}
 .slide {
     height: 100%;
     width: 100%;
     background: green;
     text-align: center;
     overflow: hidden;
-    background-size: cover;
 }
 .slide.first {
     background: url('../img/slide.jpg') no-repeat center;
@@ -482,6 +493,13 @@ section.slider .slide-arrow.right {
     line-height: 1.6;
     color: #fff;
 }
+@media screen and (max-width: 512px) {
+  .last-reg p {
+    padding-bottom: 24px;
+    border-bottom: 2px solid #00baff;
+    margin-bottom: 24px;
+  }
+}
 .last-reg .button {
     font-size: 20px;
     display: inline-block;
@@ -518,11 +536,15 @@ section.slider .slide-arrow.right {
     margin: 10px 0px;
     display: block;
 }
-.register label::after {
+.register label:after {
     position: relative;
     top: -2px;
     content: '*';
     color: #0094cb;
+}
+.register label.not-required:after {
+    content: ' ';
+    color: #fff;
 }
 .register input,
 .register textarea {
@@ -619,6 +641,10 @@ section.slider .slide-arrow.right {
     display: block;
     color: #fff;
     text-transform: uppercase;
+}
+.card-check .status .card-status {
+  position: relative;
+  top: 0px;
 }
 .card-check .status .card-status.active {
     color: #0094cb;
@@ -719,10 +745,6 @@ section.slider .slide-arrow.right {
 .map-footer .info .cred {
     font-size: 14px;
 }
-.map-footer .info .cred a {
-    text-decoration: none;
-    color: inherit;
-}
 .map-footer #fmap {
     position: absolute;
     width: 100%;
@@ -731,7 +753,7 @@ section.slider .slide-arrow.right {
 @media screen and (max-width: 640px) {
     .map-footer #fmap {
         position: relative;
-        height: 300px;
+    height: 420px;
     }
 }
 .org-info .info {
@@ -793,6 +815,9 @@ section.slider .slide-arrow.right {
     color: #fff;
     padding: 10px 15px;
     cursor: pointer;
+    /*font-size: 12px;*/
+    /*font-weight: lighter;*/
+    /*line-height: 12px;*/
 }
 .org-list .item {
     margin-bottom: 64px;
@@ -946,12 +971,143 @@ section.slider .slide-arrow.right {
     text-decoration: none;
     color: inherit;
 }
+/*
+==================================================
+Fancy Select Styling
+==================================================
+*/
+div.fancy-select {
+    position: relative;
+    font-weight: normal;
+    font-size: 14px;
+    color: #201f20;
+}
+div.fancy-select.disabled {
+    opacity: 0.5;
+}
+div.fancy-select select:focus + div.trigger {
+    border: 8px solid #0094cb;
+    box-shadow: none;
+}
+div.fancy-select select:focus + div.trigger.open {
+    box-shadow: none;
+    border: 8px solid #0094cb;
+}
+div.fancy-select div.trigger {
+    cursor: pointer;
+    padding: 10px 20px;
+    overflow: hidden;
+    position: relative;
+    background: #fff;
+    border: 8px solid #a1a1a1;
+    color: #201f20;
+    -webkit-transition: all 0.3s ease-out;
+    -moz-transition: all 0.3s ease-out;
+    -ms-transition: all 0.3s ease-out;
+    -o-transition: all 0.3s ease-out;
+    transition: all 0.3s ease-out;
+}
+@media screen and (max-width: 512px) {
+    div.fancy-select div.trigger {
+        margin-bottom: 32px;
+    }
+}
+div.fancy-select div.trigger:after {
+    content: "";
+    background: url('/img/i/dd-icon.png') no-repeat center;
+    display: block;
+    position: absolute;
+    width: 32px;
+    height: 100%;
+    top: 0px;
+    right: 0px;
+}
+div.fancy-select div.trigger.open {
+    background: #fff;
+    border: 8px solid #0094cb;
+    color: #201f20;
+    box-shadow: none;
+}
+div.fancy-select div.trigger.open:after {
+    border-top-color: #7A8498;
+}
+div.fancy-select ul.options {
+    list-style: none;
+    margin: 0;
+    position: absolute;
+    top: 96px;
+    left: 0px;
+    visibility: hidden;
+    opacity: 0;
+    z-index: 50;
+    max-height: 200px;
+    overflow: auto;
+    background: #fff;
+    border: 8px solid #a1a1a1;
+    box-sizing: border-box;
+    width: 100%;
+    padding: 0px;
+    transition: opacity 300ms ease-out, top 300ms ease-out, visibility 300ms ease-out;
+    -webkit-transition: opacity 300ms ease-out, top 300ms ease-out, visibility 300ms ease-out;
+    -moz-transition: opacity 300ms ease-out, top 300ms ease-out, visibility 300ms ease-out;
+    -ms-transition: opacity 300ms ease-out, top 300ms ease-out, visibility 300ms ease-out;
+    -o-transition: opacity 300ms ease-out, top 300ms ease-out, visibility 300ms ease-out;
+}
+div.fancy-select ul.options.open {
+    visibility: visible;
+    top: 64px;
+    opacity: 1;
+    padding: 0px;
+    /* have to use a non-visibility transition to prevent this iOS issue (bug?): */
+    /*http://stackoverflow.com/questions/10736478/css-animation-visibility-visible-works-on-chrome-and-safari-but-not-on-ios*/
+}
+div.fancy-select ul.options.overflowing {
+    top: auto;
+    bottom: 40px;
+    transition: opacity 300ms ease-out, bottom 300ms ease-out, visibility 300ms ease-out;
+    -webkit-transition: opacity 300ms ease-out, bottom 300ms ease-out, visibility 300ms ease-out;
+    -moz-transition: opacity 300ms ease-out, bottom 300ms ease-out, visibility 300ms ease-out;
+    -ms-transition: opacity 300ms ease-out, bottom 300ms ease-out, visibility 300ms ease-out;
+    -o-transition: opacity 300ms ease-out, bottom 300ms ease-out, visibility 300ms ease-out;
+}
+div.fancy-select ul.options.overflowing.open {
+    top: auto;
+    bottom: 50px;
+    transition: opacity 300ms ease-out, bottom 300ms ease-out;
+    -webkit-transition: opacity 300ms ease-out, bottom 300ms ease-out;
+    -moz-transition: opacity 300ms ease-out, bottom 300ms ease-out;
+    -ms-transition: opacity 300ms ease-out, bottom 300ms ease-out;
+    -o-transition: opacity 300ms ease-out, bottom 300ms ease-out;
+}
+div.fancy-select ul.options li {
+    padding: 10px 20px;
+    color: #004a65;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 150ms ease-out;
+    -webkit-transition: all 150ms ease-out;
+    -moz-transition: all 150ms ease-out;
+    -ms-transition: all 150ms ease-out;
+    -o-transition: all 150ms ease-out;
+}
+div.fancy-select ul.options li.selected {
+    background: #0094cb;
+    color: #fff;
+}
+div.fancy-select ul.options li.hover {
+    background: #00baff;
+    color: #fff;
+}
+
 
 /*####################################################################################################################*/
 /*#################################### Рашид #########################################################################*/
 
 .pagination {
 
+}
+.help-block {
+    color: rgb(253, 66, 59);
 }
 
 /*####################################################################################################################*/

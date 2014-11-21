@@ -4,6 +4,7 @@ namespace frontend\modules\main\controllers;
 
 
 use frontend\modules\main\models\ContactForm;
+use frontend\modules\user\models\ClientRegForm;
 use Yii;
 use yii\helpers\Json;
 use yii\web\Controller;
@@ -78,7 +79,12 @@ class DefaultController extends Controller
 //            }
 //        }
 
-        return $this->render('index');
+        $regForm = new ClientRegForm();
+
+
+        return $this->render('index', [
+            'regForm' => $regForm
+        ]);
     }
 
     public function actionLogin()
