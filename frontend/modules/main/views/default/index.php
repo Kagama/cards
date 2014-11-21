@@ -116,13 +116,15 @@ Yii::$app->view->registerJs("
         <h1>Активация карты</h1>
 
         <?php $form = \yii\widgets\ActiveForm::begin([
+            'method' => 'get',
+            'action' => 'http://test.robokassa.ru/Index.aspx',
 //            'enableClientValidation' => false,
 //            'enableAjaxValidation' => false,
         ])?>
         <div>
         <?= $form->field($regForm, 'card_number', [
             'template' => '
-                    <div class="item one-thirds column">
+                    <div class="item one-third column">
                     {label}
                     {input}
                     {error}
@@ -134,7 +136,7 @@ Yii::$app->view->registerJs("
 
         <?= $form->field($regForm, 'car_number', [
             'template' => '
-                    <div class="item one-thirds column">
+                    <div class="item one-third column">
                     {label}
                     {input}
                     {error}
@@ -146,7 +148,7 @@ Yii::$app->view->registerJs("
 
         <?= $form->field($regForm, 'phone', [
             'template' => '
-                    <div class="item one-thirds column">
+                    <div class="item one-third column">
                     {label}
                     {input}
                     {error}
@@ -161,7 +163,7 @@ Yii::$app->view->registerJs("
 
         <?= $form->field($regForm, 'month', [
             'template' => '
-                    <div class="item one-third column">
+                    <div class="item eight columns">
                     {label}
                     {input}
                     {error}
@@ -169,19 +171,22 @@ Yii::$app->view->registerJs("
 
         ])->dropDownList([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], ['onchange' => 'setCoast(this);']); ?>
 
-        <div class="item one-thirds column">
+        <div class="item eight columns">
             <label for="" class="not-required">К оплате</label>
-            <input type="text" value="100" id="payment" name="payment" style="padding: 9px 15px; width: 100%;" />
+            <input type="text" value="100" id="payment" name="OutSum" style="padding: 9px 15px; width: 100%;" />
         </div>
 
 
-        <div class="item two-thirds column" style="font-size: 18px;">
+        <div class="item sixteen columns" style="font-size: 18px;">
             <input type="submit" value="Активировать" name="submit" class="button" style="width: 100%;"/>
         </div>
 
-        <div class="item two-thirds column">
-
-        </div>
+        <input type="hidden" value="kcha" name="MrchLogin" />
+        <input type="hidden" value="0" name="InvId" />
+        <input type="hidden" value="Активация дисконтной карты на выбранный период." name="Desc" />
+        <input type="hidden" value="<?=md5("kcha:100:0:df_aDSas32_r_wDPON") ?>" name="SignatureValue" />
+<!--        <input type="hidden" value="" name="IncCurrLabel" />-->
+        <input type="hidden" value="ru" name="Culture" />
 
 
         <?php \yii\widgets\ActiveForm::end(); ?>
