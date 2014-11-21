@@ -119,6 +119,7 @@ Yii::$app->view->registerJs("
 //            'enableClientValidation' => false,
 //            'enableAjaxValidation' => false,
         ])?>
+        <div>
         <?= $form->field($regForm, 'card_number', [
             'template' => '
                     <div class="item one-thirds column">
@@ -129,7 +130,7 @@ Yii::$app->view->registerJs("
 
         ])->widget(\yii\widgets\MaskedInput::className(), [
             'mask' => '999999'
-        ])->textInput(['placeholder' => '9999']); ?>
+        ])->textInput(['placeholder' => '999999']); ?>
 
         <?= $form->field($regForm, 'car_number', [
             'template' => '
@@ -155,6 +156,9 @@ Yii::$app->view->registerJs("
             'mask' => '+7 (999) 999-99-99',
 
         ])->textInput(['placeholder' => '+7 (999) 999-99-99']); ?>
+            <div style="clear: both"></div>
+        </div>
+
         <?= $form->field($regForm, 'month', [
             'template' => '
                     <div class="item one-third column">
@@ -165,12 +169,12 @@ Yii::$app->view->registerJs("
 
         ])->dropDownList([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], ['onchange' => 'setCoast(this);']); ?>
 
-        <div class="item one-third column">
+        <div class="item one-thirds column">
             <label for="" class="not-required">К оплате</label>
             <input type="text" value="100" id="payment" name="payment" style="padding: 9px 15px; width: 100%;" />
         </div>
 
-        <br style="clear: both" />
+
         <div class="item two-thirds column" style="font-size: 18px;">
             <input type="submit" value="Активировать" name="submit" class="button" style="width: 100%;"/>
         </div>

@@ -23,7 +23,7 @@ class ClientRegForm extends Model
     public function rules()
     {
         return [
-            [['card_number', 'car_number', 'phone'], 'required'],
+            [['card_number', 'car_number', 'phone'], 'required', 'message' => 'Необходимо заполнить поле'],
             [['card_number', 'month'], 'integer']
         ];
     }
