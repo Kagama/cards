@@ -21,6 +21,7 @@ class Card extends ActiveRecord
 {
     public $from;
     public $to;
+
     /**
      * @inheritdoc
      */
@@ -59,7 +60,7 @@ class Card extends ActiveRecord
 
     public function createCards($from, $to)
     {
-        for ($i = $from; $i <= $to; $i++){
+        for ($i = $from; $i <= $to; $i++) {
             if (!(Card::findOne(['discount_card' => $i]))) {
                 $card = new Card();
                 $card->discount_card = $i;
@@ -106,8 +107,7 @@ class Card extends ActiveRecord
                 $user->discount_card = $model->id;
                 $user->save();
             }
-        }
-        // Если ID пользователя не задан
+        } // Если ID пользователя не задан
         elseif ($user_id) {
             if ($model) {
                 $model->active = false;
@@ -117,5 +117,10 @@ class Card extends ActiveRecord
             $user->discount_card = null;
             $user->save();
         }
+    }
+
+    public function getUser()
+    {
+        return self::hasOne(User::className(), ['id' => 'user_id']);
     }
 }

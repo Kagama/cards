@@ -35,6 +35,9 @@ return [
         ],
         'contentBlock' => [
             'class' => 'frontend\modules\contentBlock\ContentBlockModule'
+        ],
+        'payment' => [
+            'class' => 'frontend\modules\payment\PaymentModule'
         ]
     ],
     'as myDModuleUrlRulesBehavior' => [

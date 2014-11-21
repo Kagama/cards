@@ -243,3 +243,7 @@ function getCoord(address) {
     });
     return result;
 }
+
+function setCoast(_this) {
+    $('#payment').val((parseInt($(_this).val())+1) * 100);
+}

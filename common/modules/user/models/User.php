@@ -46,12 +46,12 @@ class User extends ActiveRecord implements IdentityInterface
     public function rules()
     {
         return [
-            [['username', 'password', 'surname', 'name', 'phone', 'car_number', 'city'], 'required'],
+            [['phone', 'car_number'], 'required'],
             [['role_id', 'status', 'created_at', 'updated_at', 'city', 'discount_card', 'month'], 'integer'],
             [['username', 'password_hash', 'password_reset_token'], 'string', 'max' => 255],
             [['auth_key'], 'string', 'max' => 32],
-            ['car_number', 'match', 'pattern' => '/^(а|в|е|к|м|н|о|р|с|т|у|х){1}[0-9]{3}(а|в|е|к|м|н|о|р|с|т|у|х){2}[0-9]{2}$/i'],
-            [['bank_card'], 'checkBankCard', 'message' => 'Номер введен неверно'],
+            [['car_number'], 'match', 'pattern' => '/^(а|в|е|к|м|н|о|р|с|т|у|х){1}[0-9]{3}(а|в|е|к|м|н|о|р|с|т|у|х){2}([0-9]{2})|([0-9]{3})$/i', 'message' => 'Проверьте правильность заполнения поля. Буква должны написаны кириллицей.'],
+            //[['bank_card'], 'checkBankCard', 'message' => 'Номер введен неверно'],
         ];
     }
 
