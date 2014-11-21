@@ -72,4 +72,36 @@ class DefaultController extends Controller
             'menu' => $menu
         ]);
     }
+
+    public function actionShowOnMap($menu_url)
+    {
+        $menu = Menu::find()->where(['url' => $menu_url])->one();
+        $category = null;
+        $model = null;
+        $city_var = Yii::$app->request->get('city');
+        $category_var = Yii::$app->request->get('category');
+
+        if ($city_var && $category_var) {
+            $category = Category::findOne(['alt_name' => $category_var]);
+            $model = Organization::findAll(['city' => $city_var, 'category' => $category->id]);
+        } elseif ($category_var) {
+            $category = Category::findOne(['alt_name' => $category_var]);
+            $model = Organization::findAll(['category' => $category->id]);
+        } elseif ($city_var) {
+            $model = Organization::findAll(['city' => $city_var]);
+        }
+
+
+        $address = [];
+
+        if ($model)
+            foreach ($model as $orgModel) {
+                $address[] = $orgModel->address;
+            }
+        return $this->render('show-on-map', [
+            'menu' => $menu,
+            'model' => $model,
+            'address' => $address,
+        ]);
+    }
 }
