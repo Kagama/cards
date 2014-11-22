@@ -11,5 +11,5 @@ return [
     'MrchLogin' => 'kcha',
     'InvId' => 0,
     'Pass_1' => 'df_aDSas32_r_wDPON',
-    'ROBOKASSA_URL' => 'http://test.robokassa.ru/Index.aspx'
+    'ROBOKASSA_URL' => 'https://auth.robokassa.ru/Merchant/Index.aspx'
 ];

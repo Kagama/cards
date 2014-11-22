@@ -44,9 +44,44 @@ $(document).ready(function() {
 	var input = $("#card_check"),
 		status = $("#card_status");
 
+    //var car_number = 'т000аа05';
+    //alert(car_number.match('/(а|в|е|к|м|н|о|р|с|т|у|х){1}[0-9]{3}(а|в|е|к|м|н|о|р|с|т|у|х){2}(([0-9]{2})|([0-9]{3}))/'));
 	input.on('input', function() {
 
-		if (in_array( input.val(), card_mas) ) //Функция in_array();
+        if (input.val().length > 7) {
+            $.ajax({
+                method:'get',
+                url: '/user/default/check-car.html',
+                async: false,
+                data: 'car_number='+input.val(),
+                dataType: 'json',
+                success: function (json) {
+
+                    if (json.success) {
+                        status.removeClass('inactive')
+                            .addClass('active')
+                            .text("Активна");
+                    }
+                    if (json.fail) {
+                        status.removeClass('active')
+                            .addClass('inactive')
+                            .text("Не активна");
+                    }
+                    if (json.car_fail) {
+                        status.removeClass('active')
+                            .addClass('inactive')
+                            .text("Авто не найдено");
+                    }
+                }
+            });
+        } else {
+            status.removeClass('active')
+                .removeClass('inactive')
+                .text("");
+        }
+
+
+		/*if (in_array( input.val(), card_mas) ) //Функция in_array();
 		{
 			status.removeClass('inactive')
 					.addClass('active')
@@ -62,7 +97,7 @@ $(document).ready(function() {
 			status.removeClass('active')
 					.addClass('inactive')
 					.text("Не активна");
-		}
+		}*/
 		
 	});
 

@@ -308,4 +308,9 @@ class User extends ActiveRecord implements IdentityInterface
     {
         return $this->hasOne(UserRole::className(), ['id' => 'role_id']);
     }
+
+    public function getCard()
+    {
+        return self::hasOne(Card::className(), ['user_id' => 'id']);
+    }
 }

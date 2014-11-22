@@ -113,13 +113,13 @@ use yii\web\View;
         <div class="title sixteen columns">
             <span>Проверить карту</span></div>
         <div class="eight columns">
-            <?= \yii\widgets\MaskedInput::widget([
-                'name' => 'car_number',
-                'mask' => 'a 999 aa 999',
-                'id' => 'card_check',
-//                'placeholder' => 'гос. номер авто'
-            ]) ?>
-            <!--            <input type="text" placeholder="номер карты" id="card_check">-->
+<!--            --><?//= \yii\widgets\MaskedInput::widget([
+//                'name' => 'car_number',
+//                'mask' => 'a999aa99[9]',
+//                'id' => 'card_check',
+////                'placeholder' => 'гос. номер авто'
+//            ]) ?>
+                        <input type="text" placeholder="а000аа00[0]" id="card_check">
         </div>
 
         <div class="status eight columns">
