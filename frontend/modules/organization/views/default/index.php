@@ -30,8 +30,11 @@
             ?>
             <?= \yii\helpers\Html::dropDownList('category', $category_var, \yii\helpers\ArrayHelper::map(\common\modules\organization\models\Category::find()->all(), 'alt_name', 'name'), ['prompt' => '---']) ?>
         </div>
-        <div class="item one-third column">
+        <div class="item three columns">
             <div class="button" onclick="$('#searchOrg').submit();">Показать</div>
+        </div>
+        <div class="item two columns">
+            <?=\yii\helpers\Html::a(" ", ['/'.$menu->url."/show-on-map"], ['class' => 'button show-on-map'])?>
         </div>
         <?php \yii\widgets\ActiveForm::end(); ?>
     </div>

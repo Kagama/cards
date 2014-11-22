@@ -83,16 +83,9 @@ $this->params['breadcrumbs'][] = $this->title;
 
 
         <div class="item sixteen columns" style="font-size: 18px;">
-            <input type="submit" value="Регистрация" name="submit" class="button" style="width: 100%;"/>
+            <div class="button" onclick="$('#payment_form').submit();">Регистрация</div>
+<!--            <input type="submit" value="Регистрация" name="submit" class="button" style="width: 100%;"/>-->
         </div>
-
-<!--        <input type="hidden" value="kcha" name="MrchLogin" />-->
-<!--        <input type="hidden" value="0" name="InvId" />-->
-<!--        <input type="hidden" value="Активация дисконтной карты на выбранный период." name="Desc" />-->
-<!--        <input type="hidden" value="o000oo00" name="Shp_1" />-->
-<!--        <input type="hidden" value="000000" name="Shp_2" />-->
-<!--        <input type="hidden" value="+7 (000) 000-00-00" name="Shp_3" />-->
-<!--        <input type="hidden" value="--><?//=md5("kcha:100:0:df_aDSas32_r_wDPON:Shp_1=o000oo00:Shp_2=000000:Shp_3=+7 (000) 000-00-00") ?><!--" name="SignatureValue" />-->
 
         <?php \yii\widgets\ActiveForm::end(); ?>
     </div>

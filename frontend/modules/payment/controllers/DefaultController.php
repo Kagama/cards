@@ -75,7 +75,7 @@ class DefaultController extends Controller
         $log->date = time();
         $log->status = 'fail';
         $log->save();
-
+        unset($_GET);
         \Yii::$app->view->registerMetaTag(['http-equiv' => 'refresh', 'content' => "10;URL=".\Yii::$app->getHomeUrl()]);
 
         return $this->render('failed');

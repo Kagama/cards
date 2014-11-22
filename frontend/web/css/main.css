@@ -139,8 +139,8 @@ section h1 {
 */
 .map-all {
     width: 100%;
-    height: 400px;
-    background: red;
+    height: 800px;
+    /*background: red;*/
 }
 /*
 ============================================================================================
@@ -805,7 +805,8 @@ section.slider .slide-arrow.right {
 .organizations .item select {
     background-image: url('/img/i/dd-icon.png') no-repeat top center;
 }
-.organizations .item .button {
+.organizations .item .button,
+.register .item .button {
     position: relative;
     top: 16px;
     border: 8px solid #0094cb;
@@ -1109,5 +1110,16 @@ div.fancy-select ul.options li.hover {
 .help-block {
     color: rgb(253, 66, 59);
 }
-
+.item .button.show-on-map {
+    display: block;
+    text-decoration: none;
+    background: none;
+    background-color: #0094CB;
+    background-image: url('/img/map-marker-icon.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    padding: 20px 30px;
+    cursor: pointer;
+    margin-top: 1px;
+}
 /*####################################################################################################################*/

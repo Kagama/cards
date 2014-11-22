@@ -118,7 +118,7 @@ Yii::$app->view->registerJs("
         ymaps.ready(function(){
                 orgMap = new ymaps.Map('map-address-all', {
                     center: [organization_coord[0][1], organization_coord[0][0]],
-                    zoom: 16
+                    zoom: 12
                 });
             orgMap.controls.add('zoomControl');
 
@@ -150,7 +150,7 @@ Yii::$app->view->registerJs("
             <?= \yii\helpers\Html::dropDownList('category', $category_var, \yii\helpers\ArrayHelper::map(\common\modules\organization\models\Category::find()->all(), 'alt_name', 'name'), ['prompt' => '---']) ?>
         </div>
         <div class="item one-third column">
-            <div class="button" onclick="$('#searchOrg').submit();">Показать</div>
+            <div class="button" onclick="$('#searchOrg').submit();">Показать на карте</div>
         </div>
         <?php \yii\widgets\ActiveForm::end(); ?>
 
@@ -159,3 +159,6 @@ Yii::$app->view->registerJs("
 
 <div class="map-all" id="map-address-all"></div>
 
+<br />
+<br />
+<br />
