@@ -28,6 +28,7 @@ class OrganizationModule extends myModule
             $ruleArr['<menu_url:('.str_replace("/", "\/",$item->url).')>'] = 'organization/default/index';
 //            $ruleArr['<menu_url:('.str_replace("/", "\/",$item->url).')>/<category_name:\w+>'] = 'organization/default/category';
             $ruleArr['<menu_url:('.str_replace("/", "\/",$item->url).')>/<id:\d+>/<alt_name:\w+>'] = 'organization/default/show';
+            $ruleArr['<menu_url:('.str_replace("/", "\/",$item->url).')>/show-on-map'] = 'organization/default/show-on-map';
         }
 
         return $ruleArr;
