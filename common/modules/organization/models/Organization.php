@@ -59,7 +59,7 @@ class Organization extends ActiveRecord
             [['latitude', 'longitude'], 'double'],
             [['phone'], 'string', 'max' => 256],
             [['city', 'category'], 'integer'],
-            [['seo_description'], 'string'],
+            [['seo_description', 'working_time'], 'string'],
             [['seo_title', 'seo_keywords', 'img_src'], 'string', 'max' => 512],
             [['img'], 'image', 'extensions' => 'jpg, png, jpeg, gif']
         ];

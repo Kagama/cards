@@ -33,9 +33,18 @@ $this->params['breadcrumbs'][] = $this->title; ?>
             'model' => $model,
             'attributes' => [
                 'id',
-                'username',
-                'surname',
-                'name',
+                'username'=>[
+                    'label' => 'Логин',
+                    'value' => $model->username == 0 ? "-" : $model->username,
+                ],
+                'surname'=>[
+                    'label' => 'Фамилия',
+                    'value' => $model->surname == 0 ? "-" : $model->surname,
+                ],
+                'name'=>[
+                    'label' => 'Имя',
+                    'value' => $model->name == 0 ? "-" : $model->name,
+                ],
                 'phone',
                 'discount_card' =>[
                     'label' => 'Номер скидочной карты',
@@ -44,7 +53,7 @@ $this->params['breadcrumbs'][] = $this->title; ?>
                 'car_number',
                 'city' => [
                     'label' => 'Город',
-                    'value' => $model->cityObj->name,
+                    'value' => $model->cityObj->name == 0 ? "-": $model->cityObj->name,
                 ],
                 'created_at' => [
                     'label' => 'Дата создания',

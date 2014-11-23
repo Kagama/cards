@@ -96,6 +96,12 @@ $route = Yii::$app->controller->getUniqueId();
             </ul>
         </li>
 
+        <li class="<?= ($route == 'payment/default') ? "active" : "panel"; ?>">
+            <a class="accordion-toggle collapsed"
+               href="<?= Url::toRoute('/payment/default/index') ?>"><i class="fa"></i> <span
+                    class="name">Логи оплаты</span></a>
+        </li>
+
 
         <!--        <li class="panel">-->
         <!--            <a class="accordion-toggle collapsed" data-toggle="collapse"-->

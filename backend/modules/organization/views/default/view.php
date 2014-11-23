@@ -40,9 +40,12 @@ $this->params['breadcrumbs'][] = $this->title; ?>
                 ],
                 'city'=> [
                     'label' => 'Город',
-                    'value' => $model->cityObj->name,
+                    'value' => $model->cityObj == null ? "-" : $model->cityObj->name,
                 ],
-                'working_time',
+                'working_time' => [
+                    'label' => 'Время работы',
+                    'value' => $model->working_time == null ? "-" : $model->working_time,
+                ],
                 'phone',
                 'address',
                 'longitude',
@@ -56,9 +59,18 @@ $this->params['breadcrumbs'][] = $this->title; ?>
                     'label' => 'Дата обновления',
                     'value' => date('d.m.Y, H:i',$model->updated_at),
                 ],
-                'seo_title',
-                'seo_keywords',
-                'seo_description'
+                'seo_title'=> [
+                    'label' => 'SEO Заголовок',
+                    'value' => $model->seo_title == null ? "-" : $model->seo_title,
+                ],
+                'seo_keywords'=> [
+                    'label' => 'SEO Ключевые слова',
+                    'value' => $model->seo_keywords == null ? "-" : $model->seo_keywords,
+                ],
+                'seo_description'=> [
+                    'label' => 'SEO Описание',
+                    'value' => $model->seo_description == null ? "-" : $model->seo_description,
+                ],
             ]
         ]) ?>
     </p>

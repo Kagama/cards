@@ -39,6 +39,10 @@ return [
             'class' => 'backend\modules\organization\OrganizationModule',
         ],
 
+        'payment' => [
+            'class' => 'backend\modules\payment\PaymentModule',
+        ],
+
         'user' => [
             'class' => 'backend\modules\user\UserModule',
         ],
