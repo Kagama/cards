@@ -74,6 +74,7 @@ return [
             'suffix' => '.html',
             'rules'=>[
 
+
 //                '<module:(news|article)>/all' => '<module>/default/all',
 //                '<module:(news|article)>/<id_alt_title:\w+>' => '<module>/default/show',
 

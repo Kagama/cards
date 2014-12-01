@@ -92,16 +92,19 @@ class DefaultController extends Controller
         }
 
 
-        $address = [];
+        $latitude = [];
+        $longitude = [];
 
         if ($model)
             foreach ($model as $orgModel) {
-                $address[] = $orgModel->address;
+                $latitude[] = $orgModel->latitude;
+                $longitude[] = $orgModel->longitude;
             }
         return $this->render('show-on-map', [
             'menu' => $menu,
             'model' => $model,
-            'address' => $address,
+            'latitude' => $latitude,
+            'longitude' => $longitude,
         ]);
     }
 }

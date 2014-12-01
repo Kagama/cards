@@ -81,6 +81,15 @@ $this->params['breadcrumbs'][] = $this->title;
             <input type="text" value="100" id="payment" name="OutSum" style="padding: 9px 15px; width: 100%;" readonly="true" />
         </div>
 
+        <div class="item column">
+            <?= $form->field($regForm, 'agreement')->checkbox() ?>
+        </div>
+
+        <div class="agreement">
+                Прочитайте <a class="" href="polzovatelskoe_soglashenie.html">Пользовательское соглашение</a>
+        </div>
+
+
 
         <div class="item sixteen columns" style="font-size: 18px;">
             <div class="button" onclick="$('#payment_form').submit();">Регистрация</div>

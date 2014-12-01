@@ -20,6 +20,14 @@ class DefaultController extends Controller
         ]);
     }
 
+    public function actionAgreement()
+    {
+        $page = Pages::findOne(['alt_title' => 'polzovatelskoe_soglashenie']);
+        return $this->render('agreement', [
+            'page' => $page,
+        ]);
+    }
+
     public function actionContact()
     {
         return $this->render('contact');

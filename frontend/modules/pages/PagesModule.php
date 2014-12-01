@@ -28,6 +28,7 @@ class PagesModule extends myModule
             $ruleArr['<menu_url:('.str_replace("/", "\/",$item->url).')>'] = 'pages/default/show';
         }
         $ruleArr['contacts'] = 'pages/default/contact';
+        $ruleArr['polzovatelskoe_soglashenie'] = 'pages/default/agreement';
         return $ruleArr;
     }
 }

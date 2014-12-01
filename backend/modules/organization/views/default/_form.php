@@ -21,7 +21,7 @@ Yii::$app->view->registerJs("
                 var longitudeInput = $('#organization-longitude');
                 var startGeoPoint;
                 if (latitudeInput.val().length == 0 || longitudeInput.val().length == 0) {
-                    startGeoPoint = [42.985532, 47.504067];
+                    startGeoPoint = [55.753676, 37.619899];
                 } else {
                     startGeoPoint = [latitudeInput.val(), longitudeInput.val()];
                 }
@@ -31,7 +31,6 @@ Yii::$app->view->registerJs("
                         zoom: 13,
                     }
                 );
-
                 var myPlacemark = new ymaps.Placemark(
                     startGeoPoint,
                     {hintContent: 'Передвиньте метку в нужное место на карте.'},
@@ -63,18 +62,6 @@ Yii::$app->view->registerJs("
 //                    myMap.behaviors.disable('scrollZoom');
 //                });
 
-//                ymaps.geolocation.get().then(function (result) {
-//                    var myLocation = result.geoObjects.get(0).properties.get('text');
-//    //                    myMap.geoObjects.add(result.geoObjects);
-//                    ymaps.route([myLocation, startGeoPoint]).then(
-//                        function (route) {
-//                            myMap.geoObjects.add(route);
-//                        },
-//                        function (error) {
-//                            alert('Возникла ошибка: ' + error.message);
-//                        }
-//                    );
-//                });
 
 
             });
@@ -112,7 +99,7 @@ Yii::$app->view->registerJs("
 
         <?php
         if ($model->img != "") {
-
+echo 'hello';
             echo Html::img("/".$model->doCache('300x190', 'width', '300x190'));
         }
         ?>

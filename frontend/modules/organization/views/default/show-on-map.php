@@ -15,9 +15,9 @@ if ($model)
                 $js .= '
 
                 orgPlacemark' . $index . ' = new ymaps.Placemark([organization_coord[' . $index . '][1], organization_coord[' . $index . '][0]], {
-                    balloonContentHeader: "<strong>'.$orgModel->name.'</strong>",
-                    balloonContentBody: "'.$orgModel->description.'",
-                    balloonContentFooter: "'.$orgModel->address.'</br> Тел.: '.$orgModel->phone.'"
+                    balloonContentHeader: "<strong>'.\yii\helpers\Html::encode($orgModel->name).'</strong>",
+                    balloonContentBody: "'.\yii\helpers\Html::encode($orgModel->description).'",
+                    balloonContentFooter: "'.\yii\helpers\Html::encode($orgModel->address).'</br> Тел.: '.$orgModel->phone.'</br> Построить путь"
 				}, washMark );
                 orgMap.geoObjects.add(orgPlacemark' . $index . ');
             ';
@@ -26,9 +26,9 @@ if ($model)
                 $js .= '
 
                 orgPlacemark' . $index . ' = new ymaps.Placemark([organization_coord[' . $index . '][1], organization_coord[' . $index . '][0]], {
-                    balloonContentHeader: "<strong>'.$orgModel->name.'</strong>",
-                    balloonContentBody: "'.$orgModel->description.'",
-                    balloonContentFooter: "'.$orgModel->address.'</br> Тел.: '.$orgModel->phone.'"
+                    balloonContentHeader: "<strong>'.\yii\helpers\Html::encode($orgModel->name).'</strong>",
+                    balloonContentBody: "'.\yii\helpers\Html::encode($orgModel->description).'",
+                    balloonContentFooter: "'.\yii\helpers\Html::encode($orgModel->address).'</br> Тел.: '.$orgModel->phone.'"
                 }, tireMark );
                 orgMap.geoObjects.add(orgPlacemark' . $index . ');
             ';
@@ -37,9 +37,9 @@ if ($model)
                 $js .= '
 
                 orgPlacemark' . $index . ' = new ymaps.Placemark([organization_coord[' . $index . '][1], organization_coord[' . $index . '][0]], {
-                    balloonContentHeader: "<strong>'.$orgModel->name.'</strong>",
-                    balloonContentBody: "'.$orgModel->description.'",
-                    balloonContentFooter: "'.$orgModel->address.'</br> Тел.: '.$orgModel->phone.'"
+                    balloonContentHeader: "<strong>'.\yii\helpers\Html::encode($orgModel->name).'</strong>",
+                    balloonContentBody: "'.\yii\helpers\Html::encode($orgModel->description).'",
+                    balloonContentFooter: "'.\yii\helpers\Html::encode($orgModel->address).'</br> Тел.: '.$orgModel->phone.'"
 				}, rusMark );
                 orgMap.geoObjects.add(orgPlacemark' . $index . ');
             ';
@@ -48,9 +48,9 @@ if ($model)
                 $js .= '
 
                 orgPlacemark' . $index . ' = new ymaps.Placemark([organization_coord[' . $index . '][1], organization_coord[' . $index . '][0]], {
-                    balloonContentHeader: "<strong>'.$orgModel->name.'</strong>",
-                    balloonContentBody: "'.$orgModel->description.'",
-                    balloonContentFooter: "'.$orgModel->address.'</br> Тел.: '.$orgModel->phone.'"
+                    balloonContentHeader: "<strong>'.\yii\helpers\Html::encode($orgModel->name).'</strong>",
+                    balloonContentBody: "'.\yii\helpers\Html::encode($orgModel->description).'",
+                    balloonContentFooter: "'.\yii\helpers\Html::encode($orgModel->address).'</br> Тел.: '.$orgModel->phone.'"
 				}, repairMark);
                 orgMap.geoObjects.add(orgPlacemark' . $index . ');
             ';
@@ -58,25 +58,30 @@ if ($model)
             default:
                 $js .= '
                 orgPlacemark' . $index . ' = new ymaps.Placemark([organization_coord[' . $index . '][1], organization_coord[' . $index . '][0]], {
-                    balloonContentHeader: "<strong>'.$orgModel->name.'</strong>",
-                    balloonContentBody: "'.$orgModel->description.'",
-                    balloonContentFooter: "'.$orgModel->address.'</br> Тел.: '.$orgModel->phone.'"
+                    balloonContentHeader: "<strong>'.\yii\helpers\Html::encode($orgModel->name).'</strong>",
+                    balloonContentBody: "'.\yii\helpers\Html::encode($orgModel->description).'",
+                    balloonContentFooter: "'.\yii\helpers\Html::encode($orgModel->address).'</br> Тел.: '.$orgModel->phone.'"
 				}, unknowMark );
                 orgMap.geoObjects.add(orgPlacemark' . $index . ');
             ';
                 break;
         }
     }
-    $js .= "});";
-
+    $js .= "";
 Yii::$app->view->registerJs("
     var organization_coord = [];
-    if (".count($address).")
+    if (".count($latitude).")
     {
-        var address = ".json_encode($address).";
+        var latitude = ".json_encode($latitude).";
+        var longitude = ".json_encode($longitude).";
 
-        $.each(address, function (id, value) {
-            organization_coord[id] = getCoord(value);
+        $.each(longitude, function (id, value) {
+            organization_coord[id] = [];
+            organization_coord[id][0] = value;
+        })
+
+        $.each(latitude, function (id, value) {
+            organization_coord[id][1] = value;
         })
     }
     else {
@@ -124,6 +129,36 @@ Yii::$app->view->registerJs("
 
     ".$js."
 
+    var myLocation = new ymaps.Placemark(
+        [ymaps.geolocation.latitude, ymaps.geolocation.longitude],
+        {hintContent: 'Передвиньте метку в нужное место на карте.'},
+        {
+            draggable: true,
+        }
+    )
+
+    orgMap.geoObjects.add(myLocation);
+    var coords = myLocation.geometry.getCoordinates();
+
+    orgMap.events.add('click', function(e) {
+        var coords = e.get('coords');
+        myLocation.geometry.setCoordinates(coords);
+        event.stopImmediatePropagation();
+    });
+
+//    myPlacemark.events.add('dragend', function(e) {
+//        var thisPlacemark = e.get('target');
+//        var coords = thisPlacemark.geometry.getCoordinates();
+//        setCoordinates(coords[0], coords[1]);
+//    });
+//var fPlacemark = new ymaps.Placemark(
+//[47.5169416033, 42.9729279383])
+//orgMap.geoObjects.add(fPlacemark);
+    orgMap.geoObjects.add(myLocation);
+
+//    alert (organization_coord[0]);
+
+});
 ", View::POS_READY);
 ?>
 

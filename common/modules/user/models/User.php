@@ -29,6 +29,7 @@ use common\modules\card\models\Card;
  * @property integer $bank_card
  * @property integer $city
  * @property integer $discount_card
+ * @property boolean $agreement
  */
 class User extends ActiveRecord implements IdentityInterface
 {
@@ -51,6 +52,7 @@ class User extends ActiveRecord implements IdentityInterface
             [['username', 'password_hash', 'password_reset_token'], 'string', 'max' => 255],
             [['auth_key'], 'string', 'max' => 32],
             [['car_number'], 'match', 'pattern' => '/^(а|в|е|к|м|н|о|р|с|т|у|х){1}[0-9]{3}(а|в|е|к|м|н|о|р|с|т|у|х){2}([0-9]{2})|([0-9]{3})$/i', 'message' => 'Проверьте правильность заполнения поля. Буква должны написаны кириллицей.'],
+            ['agreement', 'boolean'],
             //[['bank_card'], 'checkBankCard', 'message' => 'Номер введен неверно'],
         ];
     }
@@ -80,6 +82,7 @@ class User extends ActiveRecord implements IdentityInterface
             'city' => 'Город',
             'discount_card' => 'Номер скидочной карты',
             'month' => 'Количество месяцев',
+            'agreement' => 'Пользовательское соглашение',
         ];
     }
 

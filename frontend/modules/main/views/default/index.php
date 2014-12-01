@@ -83,7 +83,7 @@ use yii\web\View;
             <div class="item one-third column">
                 <div class="image">
                     <a href="<?= \yii\helpers\Url::to(['/' . $menuOrg->url . "/" . $org->id . "/" . \common\helpers\CString::translitTo($org->name)]) ?>">
-                        <img src="<?= "/" . $org->img_src . "/" . $org->img ?>" alt="">
+                        <img src="<?= "/".$org->doCache('300x190', 'width', '300x190') ?>" alt="">
                         <span>Подробнее</span>
                     </a>
                 </div>

@@ -17,6 +17,7 @@ class ClientRegForm extends Model
     public $card_number;
     public $car_number;
     public $phone;
+    public $agreement;
     public $month;
 
     /**
@@ -27,6 +28,7 @@ class ClientRegForm extends Model
         return [
             [['card_number', 'car_number', 'phone'], 'required', 'message' => 'Необходимо заполнить поле'],
             [['card_number', 'month'], 'integer'],
+            ['agreement', 'compare', 'compareValue' => true, 'message' => 'Подтвердите, что вы согласны с Пользовательским соглашением'],
             [['card_number'], 'match', 'pattern' => '/^(\d){6}$/i'],
             [['phone'], 'match', 'pattern' => '/^\+7 \([0-9]{3}\) [0-9]{3}\-[0-9]{2}\-[0-9]{2}$/i'],
             [['car_number'], 'match', 'pattern' => '/^(а|в|е|к|м|н|о|р|с|т|у|х){1}[0-9]{3}(а|в|е|к|м|н|о|р|с|т|у|х){2}(([0-9]{2})|([0-9]{3}))$/i', 'message' => 'Проверьте правильность заполнения поля. Буква должны написаны кириллицей.'],
@@ -42,7 +44,8 @@ class ClientRegForm extends Model
             'card_number' => 'Номер карты',
             'car_number' => 'Номер авто',
             'phone' => 'Контактный номер телефона',
-            'month' => 'Месяц'
+            'month' => 'Месяц',
+            'agreement' => '',
         ];
     }
 
@@ -69,6 +72,7 @@ class ClientRegForm extends Model
         $user->discount_card = $card->id;
         $user->phone = $this->phone;
         $user->role_id = 3;
+        $user->agreement = true;
 
         if ($user->save()) {
             $card->registration_date = time();
