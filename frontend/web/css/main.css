@@ -1101,6 +1101,64 @@ div.fancy-select ul.options li.hover {
     color: #fff;
 }
 
+/*
+/
+/
+/
+/
+/
+/////////////////////////////////////////////////////////////
+CHECKBOX 2.12.14
+/////////////////////////////////////////////////////////////
+*/
+.ch-b {
+    display: inline-block;
+    position: relative;
+    width: 32px;
+    height: 32px;
+    vertical-align: middle;
+}
+.ch-b input[type='checkbox'] {
+    visibility: hidden;
+}
+.ch-b input[type='checkbox']:checked + label {
+    border: 4px solid #004a65;
+    background: #0094cb url('/img/i/check.png') no-repeat center center;
+}
+.ch-b label {
+    position: absolute;
+    top: -8px;
+    left: 0;
+    width: 18px;
+    height: 18px;
+    border: 4px solid #a1a1a1;
+    vertical-align: middle;
+    cursor: pointer;
+    background: #ffffff url('/img/i/check.png') no-repeat center -24px;
+    -webkit-transition: all 0.2s ease;
+    -moz-transition: all 0.2s ease;
+    -ms-transition: all 0.2s ease;
+    -o-transition: all 0.2s ease;
+    transition: all 0.2s ease;
+}
+.ch-b label:hover {
+    border: 4px solid #0094cb;
+}
+.ch-b label::after {
+    content: '';
+}
+.ch-b span {
+    vertical-align: middle;
+}
+a.agreement,
+a.agreement:hover,
+a.agreement:visited,
+a.agreement:active {
+    text-decoration: none;
+    color: #0094cb;
+    border-bottom: 1px solid #0094cb;
+    padding-bottom: 3px;
+}
 
 /*####################################################################################################################*/
 /*#################################### Рашид #########################################################################*/

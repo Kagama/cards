@@ -78,22 +78,39 @@ $this->params['breadcrumbs'][] = $this->title;
 
         <div class="item eight columns">
             <label for="" class="not-required">К оплате</label>
-            <input type="text" value="100" id="payment" name="OutSum" style="padding: 9px 15px; width: 100%;" readonly="true" />
-        </div>
-
-        <div class="item column">
-            <?= $form->field($regForm, 'agreement')->checkbox() ?>
-        </div>
-
-        <div class="agreement">
-                Прочитайте <a class="" href="polzovatelskoe_soglashenie.html">Пользовательское соглашение</a>
+            <input type="text" value="<?=(!empty($regForm->month) ? (($regForm->month+1) * Yii::$app->params['month_price'] ): 100)?>" id="payment" name="OutSum" style="padding: 9px 15px; width: 100%;"
+                   readonly="true"/>
         </div>
 
 
+        <?= $form->field($regForm, 'agreement', [
+            'template' => '
+                    <div class="item sixteen columns">
+                        <label for="">Пользовательское соглашение</label>
+                        <div class="ch-b">
+                        {input}
+                        <label for="reg-check"></label>
+
+                        </div>
+
+                        <span>Подтвердите, что вы согласны с условиями <a href="'.(\yii\helpers\Url::to(['/polzovatelskoe_soglashenie'])).'" class="agreement">пользовательского соглашения</a></span>
+                        {error}
+                    </div>
+            '
+        ])->checkbox(['id' => 'reg-check'], false); ?>
+
+<!--        <div class="item sixteen columns">-->
+<!--            <label for="">Пользовательское соглашение</label>-->
+<!--            <div class="ch-b">-->
+<!--                <input value="None" id="reg-check" name="check" type="checkbox">-->
+<!--                <label for="reg-check"></label>-->
+<!--            </div>-->
+<!--            <span>Подтвердите, что вы согласны с условиями <a href="">пользовательского соглашения</a></span>-->
+<!--        </div>-->
 
         <div class="item sixteen columns" style="font-size: 18px;">
             <div class="button" onclick="$('#payment_form').submit();">Регистрация</div>
-<!--            <input type="submit" value="Регистрация" name="submit" class="button" style="width: 100%;"/>-->
+            <!--            <input type="submit" value="Регистрация" name="submit" class="button" style="width: 100%;"/>-->
         </div>
 
         <?php \yii\widgets\ActiveForm::end(); ?>

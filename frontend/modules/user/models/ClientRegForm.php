@@ -45,7 +45,7 @@ class ClientRegForm extends Model
             'car_number' => 'Номер авто',
             'phone' => 'Контактный номер телефона',
             'month' => 'Месяц',
-            'agreement' => '',
+            'agreement' => 'Пользовательское соглашение',
         ];
     }
 
