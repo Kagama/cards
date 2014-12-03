@@ -161,15 +161,17 @@ $(document).ready(function() {
 
     function initMap(){
 
+        var res_org = getCoord("г.Москва ул. Игральная д. 5");
 	    if( $("div").is("#fmap") )
 	    {
+
 	        footMap = new ymaps.Map("fmap", {
-	            center: [42.979622, 47.488841],
+	            center: [res_org[1], res_org[0]],
 	            zoom: 16,
 	            controls: []
 	        });
 
-	        footPlacemark = new ymaps.Placemark( [42.979622, 47.488841], {balloonContent: ''}, mainMark );
+	        footPlacemark = new ymaps.Placemark( [res_org[1], res_org[0]], {balloonContent: ''}, mainMark );
 
 	        footMap.geoObjects.add(footPlacemark);
 
@@ -178,12 +180,13 @@ $(document).ready(function() {
 
 	    if( $("div").is("#map-org") )
 	    {
+            var res = getCoord("г.Москва ул. Игральная д. 5");
 	        orgMap = new ymaps.Map("map-org", {
-	            center: [42.979622, 47.488841],
+	            center: [res_org[1], res_org[0]],
 	            zoom: 16
 	        });
 
-	        orgPlacemark = new ymaps.Placemark( [42.979622, 47.488841], {balloonContent: ''}, unknowMark );
+	        orgPlacemark = new ymaps.Placemark( [res_org[1], res_org[0]], {balloonContent: ''}, unknowMark );
 	        orgMap.geoObjects.add(orgPlacemark);
 
 	    	console.log("Org map initialised");

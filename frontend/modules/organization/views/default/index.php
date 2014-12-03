@@ -5,6 +5,11 @@
  * Date: 20.07.14
  * Time: 23:32
  */
+
+
+$this->title = $menu->seo_title." - ".Yii::$app->params['seo_title'];
+Yii::$app->view->registerMetaTag(['name' => 'keywords', 'content' => $menu->seo_keywords]);
+Yii::$app->view->registerMetaTag(['name' => 'description', 'content' => $menu->seo_description]);
 ?>
 <!-- Org select -->
 

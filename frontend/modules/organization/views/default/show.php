@@ -8,7 +8,9 @@
 
 use yii\web\View;
 
-
+$this->title = $model->name." - ".$menu->seo_title." - ".Yii::$app->params['seo_title'];
+Yii::$app->view->registerMetaTag(['name' => 'keywords', 'content' => $model->seo_keywords]);
+Yii::$app->view->registerMetaTag(['name' => 'description', 'content' => $model->seo_description]);
 
 $js = "ymaps.ready(function(){";
 

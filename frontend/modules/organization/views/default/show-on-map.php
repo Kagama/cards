@@ -7,6 +7,10 @@
  */
 use yii\web\View;
 
+$this->title = "Организации на карте - ".Yii::$app->params['seo_title'];
+Yii::$app->view->registerMetaTag(['name' => 'keywords', 'content' => $model->seo_keywords]);
+Yii::$app->view->registerMetaTag(['name' => 'description', 'content' => $model->seo_description]);
+
 $js = "";
 if ($model)
     foreach ($model as $index => $orgModel) {
