@@ -64,10 +64,9 @@ AppAsset::register($this);
         <div class="container">
             <div class="info six columns">
                 <h2>Клуб чистых авто</h2>
-                <span>ул. Некрасова, 43/38</span>
-                <span>Махачкала</span>
-                <span>Республика Дагестан</span>
-                <span class="phone">800 559 6580</span>
+                <span>ул. Игральная, 5</span>
+                <span>Москва</span>
+                <span class="phone">+7 499 393 3256</span>
                 <div class="socials">
                     <a class="i vk"></a>
                     <a class="i fb"></a>

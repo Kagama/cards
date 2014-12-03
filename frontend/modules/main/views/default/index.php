@@ -4,6 +4,9 @@
 use yii\web\View;
 
 
+$this->title = "Главная - ".Yii::$app->params['seo_title'];
+Yii::$app->view->registerMetaTag(['name' => 'keywords', 'content' => Yii::$app->params['seo_keywords']]);
+Yii::$app->view->registerMetaTag(['name' => 'description', 'content' => Yii::$app->params['seo_description']]);
 ?>
 
 <!-- Slider -->

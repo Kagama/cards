@@ -11,8 +11,8 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use common\modules\organization\models\City;
 
-$this->title = 'Регистрация';
-$this->params['breadcrumbs'][] = $this->title;
+//$this->title = 'Регистрация';
+//$this->params['breadcrumbs'][] = $this->title;
 ?>
 
 <!-- Register -->

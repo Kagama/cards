@@ -14,9 +14,6 @@ use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 use frontend\modules\main\models\SignupForm;
 use frontend\modules\main\models\LoginForm;
-use common\modules\consultation\models\Consultation;
-use frontend\modules\consultation\models\ConsultationForm;
-use frontend\modules\consultation\widget\ConsultationWidget;
 
 class DefaultController extends Controller
 {
