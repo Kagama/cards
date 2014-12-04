@@ -99,7 +99,6 @@ Yii::$app->view->registerJs("
 
         <?php
         if ($model->img != "") {
-echo 'hello';
             echo Html::img("/".$model->doCache('300x190', 'width', '300x190'));
         }
         ?>
@@ -156,7 +155,34 @@ echo 'hello';
             </div>
         </div>
 
-        <?= $form->field($model, 'description')->textarea(['rows' => 6]); ?>
+        <?= $form->field($model, 'description', [
+            'template' => '
+                {label}
+                <div class="textarea-content">{input}</div>
+                {error}
+            '
+        ])->widget(sim2github\imperavi\widgets\Redactor::className(), [
+//            'options' => [
+//                'debug' => 'true',
+//            ],
+            'clientOptions' => [ // [More about settings](http://imperavi.com/redactor/docs/settings/)
+                'convertImageLinks' => 'true', //By default
+                'convertVideoLinks' => 'true', //By default
+                'buttonSource' => true,
+                //'wym' => 'true',
+                //'air' => 'true',
+                'linkEmail' => 'true', //By default
+                'lang' => 'ru',
+//            'imageGetJson' =>  \Yii::getAlias('@web').'/redactor/upload/imagejson', //By default
+                'plugins' => [ // [More about plugins](http://imperavi.com/redactor/plugins/)
+                    'ace',
+                    'clips',
+                    'fullscreen'
+                ]
+            ],
+
+        ]);
+        ?>
 
         <fieldset>
             <legend>SEO Атрибуты</legend>

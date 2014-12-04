@@ -112,35 +112,42 @@ class Organization extends ActiveRecord
     /**
      * @inheritdoc
      */
-    public function afterSave($insert, $attributes)
+    public function beforeSave($insert)
     {
-        $file = UploadedFile::getInstance($this, 'img');
+        if (parent::beforeSave($insert)) {
 
-        if ($file instanceof UploadedFile) {
-            $this->img = $file;
+            $file = UploadedFile::getInstance($this, 'img');
 
-            if (($this->img instanceof UploadedFile ) && $this->img->size > 0) {
+            if (($file instanceof UploadedFile) && ($file->size > 0)) {
+                $this->img = $file;
 
-                $path = "images/organization/".date("Y/m/d", $this->created_at)."/".$this->getPrimaryKey();
+                if (($this->img instanceof UploadedFile ) && $this->img->size > 0) {
 
-                CDirectory::createDir($path);
-                $dir = \Yii::$app->basePath . "/../" . $path;
+                    $path = "images/organization/".date("Y/m/d", $this->created_at)."/".$this->getPrimaryKey();
 
-                $imageName = CString::translitTo($this->name). "." . $this->img->getExtension();
+                    CDirectory::createDir($path);
+                    $dir = \Yii::$app->basePath . "/../" . $path;
 
-                $this->img->saveAs($dir . "/" . $imageName);
+                    $imageName = CString::translitTo($this->name). "." . $this->img->getExtension();
 
-                $model = static::findOne($this->getPrimaryKey());
+                    $this->img->saveAs($dir . "/" . $imageName);
+
+                    $model = static::findOne($this->getPrimaryKey());
 //                $model->img = $imageName;
 //                $model->img_src = $path;
 //                $model->update();
 //                $model->update(false, ['img' => $imageName, 'img_src' => $path]);
-                static::updateAll(['img' => $imageName, 'img_src' => $path], ['id' => $this->getPrimaryKey()]);
+                    static::updateAll(['img' => $imageName, 'img_src' => $path], ['id' => $this->getPrimaryKey()]);
+                }
+            } else {
+                $this->img = $this->getOldAttribute('img');
+                $this->img_src = $this->getOldAttribute('img_src');
             }
+            return true;
         } else {
-            $this->img = $this->getOldAttribute('img');
-            $this->img_src = $this->getOldAttribute('img_src');
+            return false;
         }
+
 
         parent::afterSave($insert, $attributes);
     }

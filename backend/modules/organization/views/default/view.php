@@ -50,7 +50,7 @@ $this->params['breadcrumbs'][] = $this->title; ?>
                 'address',
                 'longitude',
                 'latitude',
-                'description',
+                'description:html',
                 'created_at' => [
                   'label' => 'Дата создания',
                     'value' => date('d.m.Y, H:i',$model->created_at),

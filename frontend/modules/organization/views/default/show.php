@@ -129,7 +129,7 @@ Yii::$app->view->registerJs("
         </div>
 
         <div class="description ten columns">
-            <a href="<?=\yii\helpers\Url::to(['/'.$menu->url."/".$model->cat->alt_name])?>"><?=$model->cat->name?></a>
+            <a href="<?=\yii\helpers\Url::to(['/'.$menu->url, 'city' => $model->cityObj->id, 'category' => $model->cat->alt_name])?>"><?=$model->cat->name?></a>
             <?=$model->description?>
         </div>
 
